@@ -1,7 +1,7 @@
 #include "_sh.h"
 
 static void detect_comms(char *data);
-static int add_cmd(char *extract_string, c_lst_t **commands);
+static int add_comm(char *extract_string, c_lst_t **commands);
 static int parse_opp(char *data);
 static int parse_spc(c_lst_t *comm);
 
