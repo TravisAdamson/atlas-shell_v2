@@ -9,5 +9,5 @@
 int main(int argc, char *argv)
 {
 	printf("Stuff");
-	return(0);
+	return (0);
 }
