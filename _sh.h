@@ -6,7 +6,7 @@
 
 /**
  * struct prog_dt - stores data related to program runtime
- * @prog: retains program name (argv[0])
+ * @prog_name: retains program name (argv[0])
  * @env_lst: adjustable copy of environ
  * @env_lst_size: size of memory allocated for env_list
  * @env_size: size of environ upon launch
@@ -14,7 +14,7 @@
 
 typedef struct prog_dt
 {
-	char *prog;
+	char *prog_name;
 	char **env_lst;
 	size_t env_lst_size;
 	size_t env_size;
