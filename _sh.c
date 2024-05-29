@@ -12,6 +12,10 @@ extern char **environ;
 int main(int argc, char *argv)
 {
 	char **env = environ;
-	printf("Stuff");
+	char *prog = argv[0];
+	if (argc == 0)
+		printf("Stuff");
+	if (prog)
+		printf("No Stuff");
 	return (0);
 }
