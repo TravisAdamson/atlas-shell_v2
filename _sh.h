@@ -91,4 +91,6 @@ int _strncmp(char *str1, char *str2, int end);
 char *_strcpy(char *dest, char *src);
 int _strlen(char *str);
 
+int empty_data(char *data);
+
 #endif
