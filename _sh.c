@@ -12,10 +12,19 @@ extern char **environ;
 int main(int argc, char **argv)
 {
 	char **env = environ;
-	char *prog = argv[0];
+	
+	prog.prog_name = argv[0];
+	
+	while (1)
+	{
+		comm_data.op_ind = 0, comm_data.op_add = 0, comm_data.op_ct = 0;
+		comm_data.cmd_ind = 0, comm_data.cmd_ct = 0;
+		signal(SIGINT, handle_interrupt);
+	}
+
 	if (argc == 0)
 		printf("Stuff");
-	if (prog)
+	if (prog.prog_name)
 		printf("No Stuff");
 	if (env)
 		printf("All the stuffs");

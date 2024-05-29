@@ -2,6 +2,18 @@
 #define _SH_H
 
 #include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <signal.h>
+#include <unistd.h>
+#include <errno.h>
+#include <dirent.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <time.h>
+
 #define MAX_LEN 1024
 
 /**
@@ -68,5 +80,7 @@ typedef struct comm_dt
 extern char **environ;
 extern p_dt_t prog;
 extern c_dt_t comm_data;
+
+void handle_interrupt(int sig);
 
 #endif
