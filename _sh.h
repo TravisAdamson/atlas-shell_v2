@@ -85,4 +85,10 @@ void handle_interrupt(int sig);
 int shell_cracked(char *data);
 ssize_t prompt(char *prompt_str, char **data, size_t *len);
 
+char *_strcat(char *dest, char *src);
+int _strcmp(char *str1, char *str2);
+int _strncmp(char *str1, char *str2, int end);
+char *_strcpy(char *dest, char *src);
+int _strlen(char *str);
+
 #endif
