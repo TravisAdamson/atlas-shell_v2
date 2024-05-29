@@ -9,8 +9,6 @@ static void detect_comms(char *data);
 
 int shell_cracked(char *data)
 {
-	c_lst_t *temp = NULL;
-	int parsed = 0;
 
 	if (!data)
 		return (-1);
