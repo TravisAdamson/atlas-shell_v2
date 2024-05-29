@@ -108,7 +108,7 @@ main_menu() {
         echo "4. Run Valgrind"
         echo -e "\e[31m5. Compile and Run Valgrind (Check for memory leaks)\e[0m"
         echo "6. Push your code - dont use"
-        echo "8. Make Clean"
+        echo "7. Make Clean"
         echo "8. Exit"
     
         read -p "Enter your choice (1-6): " choice
@@ -158,3 +158,26 @@ main_menu() {
 
 # Start the main menu
 main_menu
+
+# Function to compare output of shell with sh
+compare_with_sh=1
+shell_input="ls > $TMP_FILE\ncat -e $TMP_FILE"
+
+# Function to setup test
+function check_setup() {
+    echo "Holberton" > $TMP_FILE
+    return 0
+}
+
+# Function to setup shell
+function sh_setup() {
+    echo "Holberton" > $TMP_FILE
+    return 0
+}
+
+# Function to perform additional checks after shell execution
+function check_callback() {
+    status=$1
+
+    return $status
+}
