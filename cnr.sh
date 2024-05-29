@@ -15,15 +15,12 @@ perform_betty_checks() {
         betty-doc *.c > $betty_output
     else
         echo "Invalid option!"
-        # rm $betty_output
     fi
     
     if [ -s $betty_output ]; then
         echo "Fix Betty $checks errors before compiling!"
         cat $betty_output
-        # rm $betty_output
     fi
-    # rm $betty_output
 }
 
 # Function to run Valgrind
@@ -33,12 +30,44 @@ run_valgrind() {
 
     # Define the new tests
     tests=(
-        "echo 'ls > /tmp/hbtn_checker_tmp_16043 && cat -e /tmp/hbtn_checker_tmp_16043' | ./hsh"
-        "echo 'ls > /tmp/hbtn_checker_tmp_13055 && cat -e /tmp/hbtn_checker_tmp_13055' | ./hsh"
-        "echo 'ls >/tmp/hbtn_checker_tmp_32476 && cat -e /tmp/hbtn_checker_tmp_32476' | ./hsh"
-        "echo 'ls >/tmp/hbtn_checker_tmp_20406 && cat -e /tmp/hbtn_checker_tmp_20406' | ./hsh"
-        "echo 'ls> /tmp/hbtn_checker_tmp_21690 && cat -e /tmp/hbtn_checker_tmp_21690' | ./hsh"
-        "echo 'hbtn > /tmp/hbtn_checker_tmp_5009 && cat -e /tmp/hbtn_checker_tmp_5009' | ./hsh"
+        "echo Holberton School > test"
+        "cat -e test"
+        "rm -f test"
+        "echo Holberton School >> test"
+        "echo Holberton School >> test"
+        "cat -e test"
+        "cat -e small_file"
+        "rev < small_file"
+        "cat -e << HOLBERTON
+        > qwertyuiop
+        > ls -l                          
+        > cat -e small_file
+        > HOLBERTONnope
+        > nopeHOLBERTON
+        > HOLBERTON 
+        > HOLBERTON"
+        "ls /var > var_output"
+        "ls /var >> var_output"
+        "cat < var_output"
+        "cat << END
+        > Hello
+        > World
+        > END"
+        "ls /var | rev"
+        "ls -lr /var | cat -e"
+        "echo 'Holberton' | wc -c"
+        "ls /var ; ls /var"
+        "ls /hbtn ; ls /var"
+        "ls /var ; ls /hbtn"
+        "ls /var ; ls /hbtn ; ls /var ; ls /var"
+        "ls /var && ls /var"
+        "ls /hbtn && ls /var"
+        "ls /var && ls /var && ls /var && ls /hbtn"
+        "ls /var && ls /var && ls /var && ls /hbtn && ls /hbtn"
+        "ls /var || ls /var"
+        "ls /hbtn || ls /var"
+        "ls /hbtn || ls /hbtn || ls /hbtn || ls /var"
+        "ls /hbtn || ls /hbtn || ls /hbtn || ls /var || ls /var"
     )
 
     echo "Running Valgrind..."
@@ -70,7 +99,7 @@ compile_with_makefile() {
 # Main menu function
 clear
 main_menu() {
-echo -e "\e[34m Thank You for using Matt Checker 1.0 \e[0m"
+    echo -e "\e[34m Thank You for using Matt Checker 1.0 \e[0m"
     while true; do
         echo -e "\e[34mSelect an option:\e[0m"
         echo "1. Perform Betty style checks"
@@ -106,9 +135,7 @@ echo -e "\e[34m Thank You for using Matt Checker 1.0 \e[0m"
                 compile_with_makefile
                 if [ $memory_leaks_detected -eq 1 ]; then
                     echo -e "\e[31m@@@@@@@ YOU HAVE MEMORY LEAKS! @@@@@@@\e[0m"
-                else
-                    echo -e "\e[32mAll good!\e[0m"
-                fi
+                    fi
                 ;;
             6)
                 clear
