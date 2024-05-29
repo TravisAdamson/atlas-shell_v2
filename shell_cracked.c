@@ -3,6 +3,7 @@
 static void detect_comms(char *data);
 static int add_cmd(char *extract_string, c_lst_t **commands);
 static int parse_opp(char *data);
+static int parse_spc(c_lst_t *comm);
 
 /**
  * shell_cracked - Parses data
@@ -11,7 +12,7 @@ static int parse_opp(char *data);
 
 int shell_cracked(char *data)
 {
-	c_lst_t *tmp = NULL;
+	c_lst_t *temp = NULL;
 	int parsed = 0;
 
 	if (!data)
@@ -19,6 +20,11 @@ int shell_cracked(char *data)
 	
 	detect_comms(data);
 	parsed = parse_opp(data);
+
+	if (!parsed)
+		add_comm(data, &comm_data.comms);
+	for (temp = comm_data.comms; temp; temp = temp->next)
+		parse_spc(temp);
 	return (0);
 
 }
@@ -70,7 +76,7 @@ static int parse_opp(char *data)
 		(extract_string = sep(&data_cpy, OPS));
 		comm_data.cmd_ct++
 	)
-		add_cmd(extract_string, &comm_data.comms);
+		add_comm(extract_string, &comm_data.comms);
 	if (extract_string)
 		extract_string = NULL;
 	if (data_cpy)
@@ -79,13 +85,13 @@ static int parse_opp(char *data)
 }
 
 /**
- * add_cmd - adds node to command segment list
+ * add_comm - adds node to command segment list
  * @extract_str: split string from command line input containing command string
  * @commands: list of separated command segments
  * Return: 0 upon succes, -1 upon memory allocation failure
 */
 
-static int add_cmd(char *extract_string, c_lst_t **comms)
+static int add_comm(char *extract_string, c_lst_t **comms)
 {
 	c_lst_t *add = NULL, *tmp = NULL;
 
@@ -111,4 +117,30 @@ static int add_cmd(char *extract_string, c_lst_t **comms)
 			}
 	}
 	return (0);
+}
+
+/**
+ * parse_spc - parses/tokenizes input by whitespace into string vector
+ * @cmd: command list
+ * Return: 1 if input parsed to command, 0 if not, -1 upon improper input
+ */
+
+static int parse_spc(c_lst_t *comm)
+{
+	int i = 0;
+	char *extract_string = NULL, *data_cpy = NULL;
+
+	if (!comm)
+		return (-1);
+	for (
+		data_cpy = comm->cmd_name;
+		(extract_string = sep(&data_cpy, SPC_DELIM));
+		i++
+	)
+		comm->comm[i] = _strdup(extract_string);
+	if (extract_string)
+		extract_string = NULL;
+	if (data_cpy)
+		free(data_cpy), data_cpy = NULL;
+	return (i ? 1 : 0);
 }

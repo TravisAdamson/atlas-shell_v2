@@ -16,6 +16,7 @@
 
 #define MAX_LEN 1024
 #define OPS ";&|><"
+#define SPC_DELIM " \t\n\r"
 
 /**
  * struct prog_dt - stores data related to program runtime
