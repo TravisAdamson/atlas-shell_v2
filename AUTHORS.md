@@ -1,4 +1,4 @@
 # This file lists all contributors to the repository.
 
-matternstsr <matthew.ernst@atlasstudent.com>
-Travis <travis.adamson@atlasstudent.com>
+matternstsr <matthew.ernst@atlasschool.com>
+Travis <travis.adamson@atlasschool.com>
