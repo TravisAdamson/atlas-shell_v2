@@ -1,8 +1,8 @@
 #include "_sh.h"
 
 extern char **environ;
-extern p_dt_t prog;
-extern c_dt_t comm_data;
+p_dt_t prog;
+c_dt_t comm_data;
 
 /**
  * main - Main function for hsh
