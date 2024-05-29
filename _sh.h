@@ -15,6 +15,7 @@
 #include <time.h>
 
 #define MAX_LEN 1024
+#define OPS ";&|><"
 
 /**
  * struct prog_dt - stores data related to program runtime
@@ -42,13 +43,13 @@ typedef struct prog_dt
  * @prev: pointer to previous element in list
 */
 
-typedef struct comm_lst
+typedef struct c_lst
 {
 	char *cmd_name;
 	char *comm[MAX_LEN];
 	int cmd_ind;
-	struct comm_lst *next;
-	struct comm_lst *prev;
+	struct c_lst *next;
+	struct c_lst *prev;
 } c_lst_t;
 
 /**
@@ -74,7 +75,7 @@ typedef struct comm_dt
 	int op_add;
 	int op_ind;
 	int pipe_fd[2];
-	struct command_list *comms;
+	struct c_lst *comms;
 } c_dt_t;
 
 extern char **environ;
@@ -90,7 +91,14 @@ int _strcmp(char *str1, char *str2);
 int _strncmp(char *str1, char *str2, int end);
 char *_strcpy(char *dest, char *src);
 int _strlen(char *str);
+char *_strdup(char *str);
 
 int empty_data(char *data);
+
+char *sep(char **data, char *delim);
+char *_strsep(char **str, const char *delim);
+size_t _strcspn(const char *str1, const char *str2);
+
+void *_calloc(unsigned int nmemb, unsigned int size);
 
 #endif
