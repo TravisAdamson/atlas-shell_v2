@@ -2,6 +2,11 @@
 
 static void detect_comms(char *data);
 
+/**
+ * shell_cracked - Parses data
+ * @data: The data from command line
+*/
+
 int shell_cracked(char *data)
 {
 	c_lst_t *temp = NULL;
@@ -16,7 +21,7 @@ int shell_cracked(char *data)
 
 /**
  * detect_comms - detect compatible command opperators
- * @input: input from command line
+ * @data: input from command line
 */
 
 static void detect_comms(char *data)

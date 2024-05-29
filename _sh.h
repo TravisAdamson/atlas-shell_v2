@@ -82,5 +82,6 @@ extern p_dt_t prog;
 extern c_dt_t comm_data;
 
 void handle_interrupt(int sig);
+int shell_cracked(char *data);
 
 #endif
