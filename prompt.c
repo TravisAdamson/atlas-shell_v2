@@ -21,7 +21,7 @@ ssize_t prompt(char *prompt_str, char **data, size_t *len)
 		free(*data), exit(0);
 	else if (!getline_err)
 		return (-1);
-	if (empty_input(*data))
+	if (empty_data(*data))
 		err = -2, free(*data), *data = NULL;
 	return (!err ? getline_err : err);
 }
