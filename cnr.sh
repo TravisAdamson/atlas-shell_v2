@@ -108,7 +108,8 @@ main_menu() {
         echo "4. Run Valgrind"
         echo -e "\e[31m5. Compile and Run Valgrind (Check for memory leaks)\e[0m"
         echo "6. Push your code - dont use"
-        echo "7. Exit"
+        echo "8. Make Clean"
+        echo "8. Exit"
     
         read -p "Enter your choice (1-6): " choice
     
@@ -142,6 +143,9 @@ main_menu() {
                 pusher
                 ;;
             7)
+                make clean
+                ;;
+            8)
                 clear
                 exit 0
                 ;;
