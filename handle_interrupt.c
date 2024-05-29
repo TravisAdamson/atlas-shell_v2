@@ -11,6 +11,6 @@ void handle_interrupt(int sig)
 	if (sig == SIGINT)
 	{
 		/*Prints a new prompt.*/
-		printf("\n# ");
+		printf("\n ");
 	}
 }

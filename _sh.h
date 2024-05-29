@@ -1,18 +1,16 @@
 #ifndef _SH_H
 #define _SH_H
 
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-#include <signal.h>
-#include <unistd.h>
 #include <errno.h>
-#include <dirent.h>
+#include <fcntl.h>
+#include <signal.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sys/stat.h>
 #include <sys/types.h>
 #include <sys/wait.h>
-#include <sys/stat.h>
-#include <fcntl.h>
-#include <time.h>
+#include <unistd.h>
 
 #define MAX_LEN 1024
 #define OPS ";&|><"
@@ -101,5 +99,21 @@ char *_strsep(char **str, const char *delim);
 size_t _strcspn(const char *str1, const char *str2);
 
 void *_calloc(unsigned int nmemb, unsigned int size);
+
+int run_comm(c_lst_t *comms);
+
+char *_getenv(char *var_name);
+
+void free_strvec(char **strvec);
+char *str_concat(char *dest, char *src);
+
+char **make_slash_comm(char **ps, char *comm);
+char **remove_all_colons(char *c_string);
+int fork_exe(char *name, c_lst_t *comm);
+int fork_exe_w_pipe(char *name, c_lst_t *comm);
+void free_comm_data(void);
+
+int run_comm_branch(c_lst_t *comm);
+int check_dirs(void);
 
 #endif
