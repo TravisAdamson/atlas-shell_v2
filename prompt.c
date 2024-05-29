@@ -1,4 +1,4 @@
-#include "_sh.c"
+#include "_sh.h"
 
 /**
  * prompt - gets line from input and maintains prompt

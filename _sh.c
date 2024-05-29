@@ -1,6 +1,5 @@
 #include "_sh.h"
 
-extern char **environ;
 p_dt_t prog;
 c_dt_t comm_data;
 

@@ -1,14 +1,15 @@
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra -pedantic
-SRC = *.c
+SRC = $(wildcard *.c)
 OBJ = $(SRC:%.c=%.o)
 NAME = hsh
 RM = rm
 
 all: ${OBJ}
 	${CC} ${CFLAGS} ${SRC} -o ${NAME}
+
 clean:
-	${RM} -f *~ ${NAME}
+	${RM} -f *.o ${NAME}
 
 oclean:
 	${RM} -f ${OBJ}
