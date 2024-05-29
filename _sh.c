@@ -9,7 +9,7 @@ extern char **environ;
  * Return: 0 for success, -1 for failure
 */
 
-int main(int argc, char *argv)
+int main(int argc, char **argv)
 {
 	char **env = environ;
 	char *prog = argv[0];
@@ -17,5 +17,7 @@ int main(int argc, char *argv)
 		printf("Stuff");
 	if (prog)
 		printf("No Stuff");
+	if (env)
+		printf("All the stuffs");
 	return (0);
 }
