@@ -16,6 +16,7 @@ int shell_cracked(char *data)
 		return (-1);
 	
 	detect_comms(data);
+	return (0);
 
 }
 
