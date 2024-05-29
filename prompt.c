@@ -1,7 +1,5 @@
 #include "_sh.c"
 
-static ssize_t prompt(char *prompt_str, char **data, size_t *len);
-
 /**
  * prompt - gets line from input and maintains prompt
  * @prompt_str: How we want the prompt to look
@@ -12,7 +10,7 @@ static ssize_t prompt(char *prompt_str, char **data, size_t *len);
  *         -2 if data is empty
  */
 
-static ssize_t prompt(char *prompt_str, char **data, size_t *len)
+ssize_t prompt(char *prompt_str, char **data, size_t *len)
 {
 	ssize_t getline_err = 0, err = 0;
 

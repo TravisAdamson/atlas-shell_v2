@@ -83,5 +83,6 @@ extern c_dt_t comm_data;
 
 void handle_interrupt(int sig);
 int shell_cracked(char *data);
+ssize_t prompt(char *prompt_str, char **data, size_t *len);
 
 #endif
