@@ -14,7 +14,9 @@ c_dt_t comm_data;
 int main(int argc, char **argv)
 {
 	char **env = environ;
-	
+	size_t input_length = 0;
+	int prompt_value = 0;
+
 	prog.prog_name = argv[0];
 	
 	while (1)
@@ -22,6 +24,10 @@ int main(int argc, char **argv)
 		comm_data.op_ind = 0, comm_data.op_add = 0, comm_data.op_ct = 0;
 		comm_data.cmd_ind = 0, comm_data.cmd_ct = 0;
 		signal(SIGINT, handle_interrupt);
+		prompt_value = prompt("Shellshocked:# ", &comm_data.input, &input_length);
+		if (prompt_value < 0)
+			continue;
+		shell_cracked(comm_data.input);
 	}
 
 	if (argc == 0)
