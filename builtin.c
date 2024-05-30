@@ -50,7 +50,7 @@ static int bcd(char *path)
 		return (-1);
 	if (path)
 	{
-		if (_strlen(path) == 1 && path[0] == '-')
+		if (_str_len(path) == 1 && path[0] == '-')
 		{
 			oldpwd = _getenv("OLDPWD");
 			if (oldpwd)
@@ -159,9 +159,9 @@ static int bsetenv(char *name, char *val)
 	if (!name || !val)
 		return (-1);
 	for (; prog.env_lst[i]; i++)
-		if (!_strncmp(prog.env_lst[i], name, _strlen(name)))
+		if (!_strncmp(prog.env_lst[i], name, _str_len(name)))
 			break;
-	val_string = malloc(sizeof(char) * (_strlen(name) + _strlen(val) + 2));
+	val_string = malloc(sizeof(char) * (_str_len(name) + _str_len(val) + 2));
 	if (!val_string)
 		return (-1);
 	_strcpy(val_string, name);
@@ -200,7 +200,7 @@ static int bunsetenv(char *name)
 
 	if (!name)
 		return (-1);
-	for (env_var = prog.env_lst, var_len = _strlen(name); *env_var; i++)
+	for (env_var = prog.env_lst, var_len = _str_len(name); *env_var; i++)
 	{
 		if (!_strncmp(*env_var, name, var_len) && (*env_var)[var_len] == '=')
 		{

@@ -9,7 +9,7 @@
 
 char *_strcat(char *dest, char *src)
 {
-	int i_1 = _strlen(dest), i_2 = 0;
+	int i_1 = _str_len(dest), i_2 = 0;
 
 	if (!dest || !src)
 		return (NULL);
@@ -83,12 +83,12 @@ char *_strcpy(char *dest, char *src)
 }
 
 /**
- * _strlen - returns length of input string
+ * _str_len - returns length of input string
  * @str: string to find length
  * Return: number of characters in string
  */
 
-int _strlen(char *str)
+int _str_len(char *str)
 {
 	int i = 0;
 

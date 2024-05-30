@@ -139,7 +139,7 @@ int p_string_mem(char *p_string, char *comm)
 		if (p_string[i] == ':')
 			b++;
 	b++;
-	b *= (_strlen(comm) + 1);
-	b += (_strlen(p_string) + 1);
+	b *= (_str_len(comm) + 1);
+	b += (_str_len(p_string) + 1);
 	return (b);
 }

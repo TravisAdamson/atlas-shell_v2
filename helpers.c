@@ -145,7 +145,7 @@ char *str_concat(char *dest, char *src)
 		dest = "";
 	if (!src)
 		src = "";
-	dest_len = _strlen(dest), src_len = _strlen(src) + 1;
+	dest_len = _str_len(dest), src_len = _str_len(src) + 1;
 	ret_str = malloc(sizeof(char) * (dest_len + src_len));
 	if (!ret_str)
 		return (NULL);

@@ -16,7 +16,7 @@ char *_getenv(char *var_name)
 	if (!var_name)
 		return (NULL);
 	var_eq = str_concat(var_name, "=");
-	for (i = 0, var_def = _strlen(var_eq); prog.env_lst[i]; i++)
+	for (i = 0, var_def = _str_len(var_eq); prog.env_lst[i]; i++)
 		if (!_strncmp(prog.env_lst[i], var_eq, var_def))
 		{
 			capture = prog.env_lst[i], f = 1;
@@ -24,7 +24,7 @@ char *_getenv(char *var_name)
 		}
 	if (f)
 	{
-		if (_strlen(capture) != var_def)
+		if (_str_len(capture) != var_def)
 		{
 			env_var = _strdup(capture), capture = NULL;
 			for (i = 0, env_copy = env_var;

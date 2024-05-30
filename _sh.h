@@ -92,7 +92,7 @@ char *_strcat(char *dest, char *src);
 int _strcmp(char *str1, char *str2);
 int _strncmp(char *str1, char *str2, int end);
 char *_strcpy(char *dest, char *src);
-int _strlen(char *str);
+int _str_len(char *str);
 char *_strdup(char *str);
 
 int empty_data(char *data);

@@ -19,7 +19,7 @@ int empty_data(char *data)
 				data[i] == '\r'
 			)
 				spaces++;
-	return (spaces == _strlen(data) ? 1 : 0);
+	return (spaces == _str_len(data) ? 1 : 0);
 }
 
 /**
