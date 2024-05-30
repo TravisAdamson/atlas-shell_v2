@@ -18,7 +18,7 @@ ssize_t prompt(char *prompt_str, char **data, size_t *len)
 		write(STDOUT_FILENO, prompt_str, _str_len(prompt_str));
 	getline_err = getline(data, len, stdin);
 	if (getline_err == EOF)
-		free(*data), printf("\033[2J\033[H"), exit(0);
+		free(*data), exit(0);
 	else if (!getline_err)
 		return (-1);
 	if (empty_data(*data))
