@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra -pedantic
+CFLAGS = -Wall -Werror -Wextra -pedantic -g
 SRC = $(wildcard *.c)
 OBJ = $(SRC:%.c=%.o)
 NAME = hsh
