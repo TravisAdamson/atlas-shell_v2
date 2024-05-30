@@ -81,6 +81,9 @@ extern char **environ;
 extern p_dt_t prog;
 extern c_dt_t comm_data;
 
+int __attribute__ ((constructor)) env_load(void);
+void __attribute__ ((destructor)) env_free(void);
+
 void handle_interrupt(int sig);
 int shell_cracked(char *data);
 ssize_t prompt(char *prompt_str, char **data, size_t *len);
