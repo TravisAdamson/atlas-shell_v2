@@ -110,7 +110,7 @@ static int show_terrarium(void)
 	char **env_var = NULL;
 	int count = 0;
 
-	for (env_var = environ; *env_var; ++env_var)
+	for (env_var = prog.env_lst; *env_var; ++env_var)
 		printf("%s\n", *env_var), count++;
 	return (count ? 0 : -1);
 }
@@ -168,7 +168,10 @@ static int change_terrarium(char *name, char *val)
 	_strcat(val_string, "=");
 	_strcat(val_string, val);
 	if (prog.env_lst[i])
-		_strcpy(prog.env_lst[i], val_string);
+	{
+		free(prog.env_lst[i]);
+		prog.env_lst[i] = val_string;
+	}
 	else
 	{
 		env_cpy = _realloc(
@@ -177,13 +180,13 @@ static int change_terrarium(char *name, char *val)
 			(i + 2) * sizeof(char *));
 		if (!env_cpy)
 			return (-1);
-		_memcpy((char *)env_cpy, (char *)environ, i * sizeof(char *));
+		_memcpy((char *)env_cpy, (char *)prog.env_lst, i * sizeof(char *));
 		prog.env_lst_size++;
-		env_cpy[i] = _strdup(val_string);
+		env_cpy[i] = val_string;
 		env_cpy[i + 1] = NULL;
-		prog.env_lst = environ = env_cpy;
+		prog.env_lst = env_cpy;
 	}
-	free(val_string), val_string = NULL;
+/* 	free(val_string), val_string = NULL; */
 	return (0);
 }
 
@@ -200,20 +203,18 @@ static int empty_part_terrarium(char *name)
 
 	if (!name)
 		return (-1);
-	for (env_var = prog.env_lst, var_len = _str_len(name); *env_var; i++)
+	for (env_var = prog.env_lst, var_len = _str_len(name); i < prog.env_lst_size; i++)
 	{
-		if (!_strncmp(*env_var, name, var_len) && (*env_var)[var_len] == '=')
+		if (!_strncmp(env_var[i], name, var_len) && (env_var[i])[var_len] == '=')
 		{
-			temp = *env_var;
-			shrink = env_var;
+			temp = env_var[i];
+			shrink = &env_var[i];
 			do
 				shrink[0] = shrink[1];
 			while (*shrink++);
-			if (i >= prog.env_size)
-				free(temp);
+			free(temp);
 		}
-		else
-			++env_var;
 	}
+	
 	return (0);
 }

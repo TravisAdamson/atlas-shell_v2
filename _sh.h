@@ -74,7 +74,7 @@ typedef struct comm_dt
 	int op_add;
 	int op_ind;
 	int pipe_fd[2];
-	struct c_lst *comms;
+	c_lst_t *comms;
 } c_dt_t;
 
 extern char **environ;
