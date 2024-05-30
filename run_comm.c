@@ -1,8 +1,5 @@
 #include "_sh.h"
 
-static int p_string_mem(char *p_str, char *comm);
-static char **proc_path(char *comm);
-
 /**
  * run_comm - run activity based on operator input
  * @commands: command segment, possibly preceded or followed by operator
@@ -106,7 +103,7 @@ int check_dirs(void)
  *         empty/unaccessible
  */
 
-static char **proc_path(char *comm)
+char **proc_path(char *comm)
 {
 	int m_size = 0;
 	char *p_string = NULL, *d = NULL, **ps = NULL, **s_paths = NULL;
@@ -134,7 +131,7 @@ static char **proc_path(char *comm)
  * Return: multiplier number for mem alloc calculation
  */
 
-static int p_string_mem(char *p_string, char *comm)
+int p_string_mem(char *p_string, char *comm)
 {
 	int i = 0, b = 0;
 

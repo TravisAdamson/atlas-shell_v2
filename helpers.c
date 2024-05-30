@@ -29,7 +29,7 @@ char **remove_all_colons(char *c_string)
  * Return: strings concatenated with slash followed by input cmd
  */
 
-char **make_slash_command(char **ps, char *comm)
+char **make_slash_comm(char **ps, char *comm)
 {
 	int i = 0;
 	char slash_string[MAX_LEN] = "/", *slash_comm = NULL, *p = NULL;

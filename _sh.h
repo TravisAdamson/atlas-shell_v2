@@ -99,6 +99,8 @@ char *_strsep(char **str, const char *delim);
 size_t _strcspn(const char *str1, const char *str2);
 
 void *_calloc(unsigned int nmemb, unsigned int size);
+char *_memcpy(char *dest, char *src, unsigned int n);
+void *_realloc(void *memory, size_t old_size, size_t new_size);
 
 int run_comm(c_lst_t *comms);
 
@@ -115,5 +117,23 @@ void free_comm_data(void);
 
 int run_comm_branch(c_lst_t *comm);
 int check_dirs(void);
+
+int _isdigit(int chr);
+int _atoi(char *input_string);
+
+int builtin(char **comm);
+void run_error(char **comm, int code);
+
+int run_opp(c_lst_t *comm);
+int colon_opp(c_lst_t *comm);
+int pipes(c_lst_t *comm, int p_count);
+int p_count(int *ops);
+int right_redirect(c_lst_t *comm);
+int right_redirect_2(c_lst_t *comm);
+int left_redirect(c_lst_t *comm);
+int left_redirect_2(c_lst_t *comm);
+
+int p_string_mem(char *p_str, char *comm);
+char **proc_path(char *comm);
 
 #endif
