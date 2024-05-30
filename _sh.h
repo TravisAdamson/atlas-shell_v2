@@ -84,7 +84,7 @@ extern c_dt_t comm_data;
 int __attribute__ ((constructor)) env_load(void);
 void __attribute__ ((destructor)) env_free(void);
 
-void handle_interrupt(int sig);
+void turtle_breaks(int sig);
 int shell_cracked(char *data);
 ssize_t prompt(char *prompt_str, char **data, size_t *len);
 
@@ -107,16 +107,16 @@ void *_realloc(void *memory, size_t old_size, size_t new_size);
 
 int run_comm(c_lst_t *comms);
 
-char *_getenv(char *var_name);
+char *see_terrarium(char *var_name);
 
-void free_strvec(char **strvec);
+void to_shell_w_you(char **strvec);
 char *str_concat(char *dest, char *src);
 
-char **make_slash_comm(char **ps, char *comm);
-char **remove_all_colons(char *c_string);
+char **full_turtly(char **ps, char *comm);
+char **turtle_waste(char *c_string);
 int fork_exe(char *name, c_lst_t *comm);
 int fork_exe_w_pipe(char *name, c_lst_t *comm);
-void free_comm_data(void);
+void shelled_turtle(void);
 
 int run_comm_branch(c_lst_t *comm);
 int check_dirs(void);
@@ -124,8 +124,8 @@ int check_dirs(void);
 int _isdigit(int chr);
 int _atoi(char *input_string);
 
-int builtin(char **comm);
-void run_error(char **comm, int code);
+int underbelly(char **comm);
+void broken_shell(char **comm, int code);
 
 int run_opp(c_lst_t *comm);
 int colon_opp(c_lst_t *comm);

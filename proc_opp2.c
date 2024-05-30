@@ -19,7 +19,7 @@ int right_redirect(c_lst_t *comm)
 		dup2(fd, STDOUT_FILENO);
 		l_error = run_comm_branch(comm);
 		if (l_error == 13 || l_error == 127)
-			run_error(comm->comm, l_error);
+			broken_shell(comm->comm, l_error);
 		fflush(stdout);
 		close(fd);
 		dup2(r_out, STDOUT_FILENO);
@@ -49,7 +49,7 @@ int right_redirect_2(c_lst_t *comm)
 		dup2(fd, STDOUT_FILENO);
 		l_error = run_comm_branch(comm);
 		if (l_error == 13 || l_error == 127)
-			run_error(comm->comm, l_error);
+			broken_shell(comm->comm, l_error);
 		fflush(stdout);
 		close(fd);
 		dup2(r_out, STDOUT_FILENO);
@@ -79,7 +79,7 @@ int left_redirect(c_lst_t *comm)
 		dup2(fd, STDIN_FILENO);
 		l_error = run_comm_branch(comm);
 		if (l_error)
-			run_error(comm->comm, l_error);
+			broken_shell(comm->comm, l_error);
 		close(fd);
 		dup2(r_in, STDIN_FILENO);
 		close(r_in);
@@ -92,7 +92,7 @@ int left_redirect(c_lst_t *comm)
 				stderr, "%s: 1: cannot open %s: No such file\n",
 				prog.prog_name, comm->next->comm[0]
 			);
-			run_error(comm->comm, 2);
+			broken_shell(comm->comm, 2);
 		}
 		return (-1);
 	}
