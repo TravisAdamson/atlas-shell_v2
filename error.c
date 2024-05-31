@@ -56,4 +56,5 @@ static void error_perm(char *comm)
 static void error_nf(char *comm)
 {
 	fprintf(stderr, "%s: 1: %s: not found\n", prog.prog_name, comm);
+	error_flag_fix = 1;
 }

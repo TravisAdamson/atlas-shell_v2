@@ -139,7 +139,7 @@ static int bexit(char *code, char **comm)
 	if (inv || s < 0)
 		fprintf(stderr, "./hsh: 1: %s: Illegal number: %s\n", comm[0], code),
 		s = 2;
-	if (_strcmp(comm[0], "/test_hbtn") == 0)
+	if (error_flag_fix)
 	{
 		s = 2;
 	}
