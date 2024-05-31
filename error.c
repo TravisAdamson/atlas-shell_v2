@@ -11,8 +11,7 @@ static void error_nf(char *comm);
 
 void run_error(char **comm, int code)
 {
-	int i = 0;
-
+	
 	if (code == 13)
 		error_perm(comm[0]);
 	else if (code == 127)
