@@ -80,14 +80,16 @@ typedef struct comm_dt
 extern char **environ;
 extern p_dt_t prog;
 extern c_dt_t comm_data;
-extern int error_flag;
 
 int __attribute__ ((constructor)) env_load(void);
 void __attribute__ ((destructor)) env_free(void);
 
 void handle_interrupt(int sig);
+
 int shell_cracked(char *data);
 ssize_t prompt(char *prompt_str, char **data, size_t *len);
+int empty_data(char *data);
+char *sep(char **data, char *delim);
 
 char *_strcat(char *dest, char *src);
 int _strcmp(char *str1, char *str2);
@@ -95,12 +97,9 @@ int _strncmp(char *str1, char *str2, int end);
 char *_strcpy(char *dest, char *src);
 int _str_len(char *str);
 char *_strdup(char *str);
-
-int empty_data(char *data);
-
-char *sep(char **data, char *delim);
 char *_strsep(char **str, const char *delim);
 size_t _strcspn(const char *str1, const char *str2);
+char *str_concat(char *dest, char *src);
 
 void *_calloc(unsigned int nmemb, unsigned int size);
 char *_memcpy(char *dest, char *src, unsigned int n);
@@ -111,7 +110,6 @@ int run_comm(c_lst_t *comms);
 char *_getenv(char *var_name);
 
 void free_strvec(char **strvec);
-char *str_concat(char *dest, char *src);
 
 char **make_slash_comm(char **ps, char *comm);
 char **remove_all_colons(char *c_string);

@@ -2,7 +2,6 @@
 
 p_dt_t prog;
 c_dt_t comm_data;
-int error_flag;
 
 /**
  * main - Main function for hsh
