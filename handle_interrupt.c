@@ -1,11 +1,11 @@
 #include "_sh.h"
 
 /**
- * turtle_breaks - handles SIGINT
+ * handle_interrupt - handles SIGINT
  * @sig: signal
  *
  */
-void turtle_breaks(int sig)
+void handle_interrupt(int sig)
 {
 	/*SIGINT is a signal that is sent to a deal with for Ctrl+C. */
 	if (sig == SIGINT)

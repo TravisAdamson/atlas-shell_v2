@@ -1,7 +1,7 @@
 #include "_sh.h"
 
-static void not_your_shell(char *comm);
-static void missing_shell(char *comm);
+static void error_perm(char *comm);
+static void error_nf(char *comm);
 
 /**
  * error_processor - processes errors suitably respective to error code
@@ -9,12 +9,12 @@ static void missing_shell(char *comm);
  * @code: error code
 */
 
-void broken_shell(char **comm, int code)
+void run_error(char **comm, int code)
 {
 	if (code == 13)
-		not_your_shell(comm[0]);
+		error_perm(comm[0]);
 	else if (code == 127)
-		missing_shell(comm[0]);
+		error_nf(comm[0]);
 	if (!isatty(STDIN_FILENO) && comm_data.op_array[comm_data.op_ind] != 0x4)
 	{
 		if (
@@ -30,27 +30,27 @@ void broken_shell(char **comm, int code)
 			comm_data.cmd_ind < comm_data.cmd_ct
 		)
 			return;
-		shelled_turtle(), exit(code);
+		free_comm_data(), exit(code);
 	}
 }
 
 /**
- * not_your_shell - prints code 13 error message to stderr
+ * error_perm - prints code 13 error message to stderr
  * @comm: command that has been denied permission
  */
 
-static void not_your_shell(char *comm)
+static void error_perm(char *comm)
 {
 /*	fprintf(stderr, "%s: 1: %s: Permission denied\n", prog, command);*/
 	perror(comm);
 }
 
 /**
- * missing_shell - prints code 127 error message to stderr
+ * error_nf - prints code 127 error message to stderr
  * @comm: command that is not found
  */
 
-static void missing_shell(char *comm)
+static void error_nf(char *comm)
 {
 	fprintf(stderr, "%s: 1: %s: not found\n", prog.prog_name, comm);
 }

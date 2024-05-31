@@ -1,12 +1,12 @@
 #include "_sh.h"
 
 /**
- * turtle_waste - divides input string into several based on colons present
+ * remove_all_colons - divides input string into several based on colons present
  * @colon_str: input string to be divided
  * Return: populated string vector upon success, NULL upon mem alloc failure
  */
 
-char **turtle_waste(char *c_string)
+char **remove_all_colons(char *c_string)
 {
 	int i = 0;
 	char *cpy = NULL, **ps = NULL;
@@ -22,14 +22,14 @@ char **turtle_waste(char *c_string)
 }
 
 /**
- * full_turtly - slash + command to all strings in paths
+ * make_slash_command - slash + command to all strings in paths
  *                        vector
  * @ps: input vector, to all elements of which slash + command appended
  * @comm: command from main
  * Return: strings concatenated with slash followed by input cmd
  */
 
-char **full_turtly(char **ps, char *comm)
+char **make_slash_comm(char **ps, char *comm)
 {
 	int i = 0;
 	char slash_string[MAX_LEN] = "/", *slash_comm = NULL, *p = NULL;
@@ -83,7 +83,7 @@ int fork_exe(char *name, c_lst_t *comm)
 			f == 2 && !isatty(STDIN_FILENO) &&
 			comm_data.cmd_ind == comm_data.cmd_ct
 		)
-			shelled_turtle(), _exit(f);
+			free_comm_data(), _exit(f);
 	}
 	return (f);
 }
@@ -124,7 +124,7 @@ int fork_exe_w_pipe(char *name, c_lst_t *comm)
 			f == 2 && !isatty(STDIN_FILENO) &&
 			comm_data.cmd_ind == comm_data.cmd_ct
 		)
-			shelled_turtle(), _exit(f);
+			free_comm_data(), _exit(f);
 	}
 	return (f);
 }
