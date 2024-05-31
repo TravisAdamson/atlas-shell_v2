@@ -69,16 +69,16 @@ int colon_opp(c_lst_t *comm)
 /**
  * pipe - pipeline opps
  * @comm: selected command segment input
- * @p_count: number of pipes to be processed
+ * @p_counted: number of pipes to be processed
  * Return: number of pipes processed, -1 otherwise
 */
 
-int pipes(c_lst_t *comm, int p_count)
+int pipes(c_lst_t *comm, int p_counted)
 {
 	c_lst_t *temp = NULL;
 	int l_error = 0, p_comp = 0;
 
-	if (!comm || !comm->next->comm[0] || !p_count)
+	if (!comm || !comm->next->comm[0] || !p_counted)
 		return (-1);
 	pipe(comm_data.pipe_fd);
 	for (
