@@ -89,7 +89,7 @@ int pipes(c_lst_t *comm, int p_count)
 	{
 		run_comm_branch(temp);
 		if (l_error)
-			run_error(temp->comm, l_error);
+			run_error(temp->next->comm, l_error);
 	}
 	colon_opp(temp);
 	return (p_comp);
