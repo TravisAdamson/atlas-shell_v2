@@ -182,8 +182,8 @@ static int change_terrarium(char *name, char *val)
 			(i + 2) * sizeof(char *));
 		if (!env_cpy)
 			return (-1);
-		_memcpy((char *)env_cpy, (char *)prog.env_lst, i * sizeof(char *));
-		prog.env_lst_size++; */
+		_memcpy((char *)env_cpy, (char *)prog.env_lst, i * sizeof(char *)); */
+		prog.env_lst_size++;
 		prog.env_lst[i] = _strdup(val_string);
 		prog.env_lst[i + 1] = NULL;
 	}
