@@ -110,7 +110,7 @@ static int benv(void)
 	char **env_var = NULL;
 	int count = 0;
 
-	for (env_var = environ; *env_var; ++env_var)
+	for (env_var = prog.env_lst; *env_var; ++env_var)
 		printf("%s\n", *env_var), count++;
 	return (count ? 0 : -1);
 }
@@ -181,7 +181,7 @@ static int bsetenv(char *name, char *val)
 		prog.env_lst_size++;
 		env_cpy[i] = _strdup(val_string);
 		env_cpy[i + 1] = NULL;
-		prog.env_lst = environ = env_cpy;
+		prog.env_lst = env_cpy;
 	}
 	free(val_string), val_string = NULL;
 	return (0);
