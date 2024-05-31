@@ -46,6 +46,7 @@ static void error_perm(char *comm)
 {
 /*	fprintf(stderr, "%s: 1: %s: Permission denied\n", prog, command);*/
 	perror(comm);
+	error_flag_fix = 1;
 }
 
 /**
