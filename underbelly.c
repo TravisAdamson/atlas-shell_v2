@@ -153,9 +153,9 @@ static int escape_terrarium(char *code, char **comm)
 
 static int change_terrarium(char *name, char *val)
 {
-	size_t i = 0;
+	size_t i = 0, i2 = 0;
 	char *val_string = NULL;
-/* 	char **env_cpy = NULL; */
+	char **env_cpy = NULL;
 
 
 	if (!name || !val)
@@ -176,16 +176,21 @@ static int change_terrarium(char *name, char *val)
 	}
 	else
 	{
-/* 		env_cpy = _realloc(
-			(char *)prog.env_lst,
-			(i) * sizeof(char *),
-			(i + 2) * sizeof(char *));
+		prog.env_lst_size++;
+		env_cpy = _calloc(sizeof(char *) * (prog.env_lst_size + 1), 1);
 		if (!env_cpy)
 			return (-1);
-		_memcpy((char *)env_cpy, (char *)prog.env_lst, i * sizeof(char *)); */
-		prog.env_lst_size++;
-		prog.env_lst[i] = _strdup(val_string);
-		prog.env_lst[i + 1] = NULL;
+		for (; i2 != prog.env_lst_size; i2++)
+			env_cpy[i2] = _strdup(prog.env_lst[i2]);
+		prog.env_lst = _calloc(sizeof(char*) * (prog.env_lst_size + 1), 1);
+		prog.env_lst[i2 + 1] = NULL;
+		prog.env_lst[i2] = val_string;
+		i2--;
+		for (; i2 + 1 > 0; i2--)
+			prog.env_lst[i2] = _strdup(env_cpy[i2]);
+		free(env_cpy);
+/* 		prog.env_lst[i] = _strdup(val_string);
+		prog.env_lst[i + 1] = NULL; */
 	}
 /* 	free(val_string), val_string = NULL; */
 	return (0);
