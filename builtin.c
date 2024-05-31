@@ -139,10 +139,14 @@ static int bexit(char *code, char **comm)
 	if (inv || s < 0)
 		fprintf(stderr, "./hsh: 1: %s: Illegal number: %s\n", comm[0], code),
 		s = 2;
-
+	if (s == 127)
+	{
+		free_comm_data();
+		exit(s);
+	}
 	free_comm_data();
 
-	_exit(s);
+	exit(s);
 	return (0);
 }
 
