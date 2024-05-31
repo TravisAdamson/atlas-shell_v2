@@ -17,16 +17,7 @@ void run_error(char **comm, int code)
 		error_perm(comm[0]);
 	else if (code == 127)
 	{
-		while (comm_data.op_array)
-		{
-			if (comm_data.op_array[i] == 0x3)
-			{
-				error_nf(comm[i + 1]);
-				i = 100;
-			}
-		}
-		if (i != 100)
-			error_nf(comm[0]);
+		error_nf(comm[0]);
 	}
 	if (!isatty(STDIN_FILENO) && comm_data.op_array[comm_data.op_ind] != 0x4)
 	{
