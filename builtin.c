@@ -140,7 +140,7 @@ static int bexit(char *code, char **comm)
 		fprintf(stderr, "./hsh: 1: %s: Illegal number: %s\n", comm[0], code),
 		s = 2;
 	free_comm_data();
-	exit(s);
+	exit(code);
 	return (0);
 }
 
