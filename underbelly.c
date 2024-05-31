@@ -155,7 +155,7 @@ static int change_terrarium(char *name, char *val)
 {
 	size_t i = 0;
 	char *val_string = NULL;
-	char **env_cpy = NULL;
+/* 	char **env_cpy = NULL; */
 
 
 	if (!name || !val)
@@ -176,17 +176,16 @@ static int change_terrarium(char *name, char *val)
 	}
 	else
 	{
-		env_cpy = _realloc(
+/* 		env_cpy = _realloc(
 			(char *)prog.env_lst,
 			(i) * sizeof(char *),
 			(i + 2) * sizeof(char *));
 		if (!env_cpy)
 			return (-1);
-	/* 	_memcpy((char *)env_cpy, (char *)prog.env_lst, i * sizeof(char *)); */
-		prog.env_lst_size++;
-/* 		env_cpy[i] = val_string;
-		env_cpy[i + 1] = NULL; */
-		prog.env_lst = env_cpy;
+		_memcpy((char *)env_cpy, (char *)prog.env_lst, i * sizeof(char *));
+		prog.env_lst_size++; */
+		prog.env_lst[i] = _strdup(val_string);
+		prog.env_lst[i + 1] = NULL;
 	}
 /* 	free(val_string), val_string = NULL; */
 	return (0);
