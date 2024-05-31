@@ -11,10 +11,23 @@ static void error_nf(char *comm);
 
 void run_error(char **comm, int code)
 {
+	int i = 0;
+
 	if (code == 13)
 		error_perm(comm[0]);
 	else if (code == 127)
-		error_nf(comm[0]);
+	{
+		while (comm_data.op_array)
+		{
+			if (comm_data.op_array[i] == 0x3)
+			{
+				error_nf(comm[i + 1]);
+				i = 100;
+			}
+		}
+		if (i != 100)
+			error_nf(comm[0]);
+	}
 	if (!isatty(STDIN_FILENO) && comm_data.op_array[comm_data.op_ind] != 0x4)
 	{
 		if (
