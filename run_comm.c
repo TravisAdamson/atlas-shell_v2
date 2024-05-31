@@ -14,7 +14,7 @@ int run_comm(c_lst_t *comms)
 	{
 		l_error = run_comm_branch(comms);
 		if (l_error == 13 || l_error == 127)
-			run_error(comms->comm, l_error);
+			broken_shell(comms->comm, l_error);
 	}
 	else
 		run_opp(comms);
@@ -34,7 +34,7 @@ int run_comm_branch(c_lst_t *comm)
 	char **f_paths = NULL, *name = comm->comm[0];
 
 	error = check_dirs();
-	if (builtin(comm->comm))
+	if (underbelly(comm->comm))
 		return (1);
 	if (access(name, F_OK) == -1)
 	{
@@ -76,7 +76,7 @@ int check_dirs(void)
 {
 	char *check_dir = NULL, *check_pdir = NULL;
 
-	check_dir = _getenv("PATH");
+	check_dir = see_terrarium("PATH");
 	if (!check_dir)
 	{
 		free(check_dir), check_dir = NULL;
@@ -84,7 +84,7 @@ int check_dirs(void)
 	}
 	if (check_dir)
 		free(check_dir), check_dir = NULL;
-	check_pdir = _getenv("PWD");
+	check_pdir = see_terrarium("PWD");
 	if (!check_pdir)
 	{
 		free(check_pdir), check_pdir = NULL;
@@ -110,7 +110,7 @@ char **proc_path(char *comm)
 
 	if (!comm)
 		return (NULL);
-	p_string = _getenv("PATH");
+	p_string = see_terrarium("PATH");
 	if (!p_string)
 		return (NULL);
 	m_size = p_string_mem(p_string, comm);
@@ -118,8 +118,8 @@ char **proc_path(char *comm)
 	if (!d)
 		return (NULL);
 	_strcpy(d, p_string);
-	ps = remove_all_colons(d);
-	s_paths = make_slash_comm(ps, comm);
+	ps = turtle_waste(d);
+	s_paths = full_turtly(ps, comm);
 	free(ps), free(d), free(p_string);
 	return (s_paths);
 }

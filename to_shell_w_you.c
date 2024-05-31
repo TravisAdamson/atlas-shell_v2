@@ -1,33 +1,11 @@
 #include "_sh.h"
 
 /**
- * empty_data - verifies if data is only space characters
- * @data: input string
- * Return: 0 if length of string equal to number of whitespaces, -1 otherwise
- */
-
-int empty_data(char *data)
-{
-	int i = 0, spaces = 0;
-
-	if (data)
-		for (; data[i]; i++)
-			if (
-				data[i] == ' ' ||
-				data[i] == '\t' ||
-				data[i] == '\n' ||
-				data[i] == '\r'
-			)
-				spaces++;
-	return (spaces == _str_len(data) ? 1 : 0);
-}
-
-/**
- * free_strvec - frees memory related to string vector
+ * to_shell_w_you - frees memory related to string vector
  * @strvec: string vector
  */
 
-void free_strvec(char **strvec)
+void to_shell_w_you(char **strvec)
 {
 	int i = 0;
 
@@ -38,10 +16,10 @@ void free_strvec(char **strvec)
 }
 
 /**
- * free_comm_data - frees memory related to command vector created in main
+ * shelled_turtle - frees memory related to command vector created in main
  */
 
-void free_comm_data(void)
+void shelled_turtle(void)
 {
 	c_lst_t *hold = NULL;
 	int i = 0;
