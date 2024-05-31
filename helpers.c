@@ -124,7 +124,7 @@ int fork_exe_w_pipe(char *name, c_lst_t *comm)
 			f == 2 && !isatty(STDIN_FILENO) &&
 			comm_data.cmd_ind == comm_data.cmd_ct
 		)
-			free_comm_data(), exit(f);
+			free_comm_data(), _exit(f);
 	}
 	return (f);
 }
