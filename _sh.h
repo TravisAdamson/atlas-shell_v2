@@ -80,6 +80,7 @@ typedef struct comm_dt
 extern char **environ;
 extern p_dt_t prog;
 extern c_dt_t comm_data;
+extern int error_flag;
 
 int __attribute__ ((constructor)) env_load(void);
 void __attribute__ ((destructor)) env_free(void);
