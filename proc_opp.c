@@ -60,7 +60,7 @@ int colon_opp(c_lst_t *comm)
 	l_error = run_comm_branch(comm);
 	if (l_error == 2 || l_error == 13 || l_error == 127)
 	{
-		broken_shell(comm->comm, l_error);
+		run_error(comm->comm, l_error);
 		return (0);
 	}
 	return (1);
@@ -89,7 +89,7 @@ int pipes(c_lst_t *comm, int p_count)
 	{
 		run_comm_branch(temp);
 		if (l_error)
-			broken_shell(temp->comm, l_error);
+			run_error(temp->comm, l_error);
 	}
 	colon_opp(temp);
 	return (p_comp);
