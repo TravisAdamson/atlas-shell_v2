@@ -102,7 +102,10 @@ man shellshocked
 4. To exit the shell, use the `exit` command.
 
 ## Credits
-Shellshocked is developed and maintained by Cool Developer Name ([GitHub](https://github.com/TravisAdamson/atlas-shell_v2/blob/main/AUTHORS.md)).
+Shellshocked is developed and maintained by Cool Developers:
+matternstsr matthew.ernst@atlasschool.com
+Travis travis.adamson@atlasschool.com
+([GitHub](https://github.com/TravisAdamson/atlas-shell_v2/blob/main/AUTHORS.md)).
 
 ## License
 Shellshocked is licensed under the Cool MIT License ([MIT](https://opensource.org/licenses/MIT)).
@@ -147,7 +150,7 @@ drwxrwxrwx 1 mattie mattie  4096 Jun  3 17:33 ..
 
 Example 3: Displaying the current working directory
 $ pwd
-/holbertonschool-simple_shell_remake/readme
+/atlas-shell_v2/readme
 
 Example 4: Echoing an environmental variable
 $ echo SHELLSHOCKED
