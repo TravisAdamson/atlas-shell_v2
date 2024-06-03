@@ -1,12 +1,12 @@
-#include "_sh.h"
+#include "shell.h"
 
 /**
- * remove_all_colons - divides input string into several based on colons present
+ * clear_debris - divides input string into several based on colons present
  * @colon_str: input string to be divided
  * Return: populated string vector upon success, NULL upon mem alloc failure
  */
 
-char **remove_all_colons(char *c_string)
+char **clear_debris(char *c_string)
 {
 	int i = 0;
 	char *cpy = NULL, **ps = NULL;
@@ -16,20 +16,20 @@ char **remove_all_colons(char *c_string)
 	ps = malloc(sizeof(char *) + MAX_LEN);
 	if (!ps)
 		return (NULL);
-	for (cpy = c_string; (ps[i] = sep(&cpy, ":")); i++)
+	for (cpy = c_string; (ps[i] = baby_turtles(&cpy, ":")); i++)
 		;
 	return (ps);
 }
 
 /**
- * make_slash_command - slash + command to all strings in paths
+ * find_mate - slash + command to all strings in paths
  *                        vector
  * @ps: input vector, to all elements of which slash + command appended
  * @comm: command from main
  * Return: strings concatenated with slash followed by input cmd
  */
 
-char **make_slash_comm(char **ps, char *comm)
+char **find_mate(char **ps, char *comm)
 {
 	int i = 0;
 	char slash_string[MAX_LEN] = "/", *slash_comm = NULL, *p = NULL;
@@ -52,13 +52,13 @@ char **make_slash_comm(char **ps, char *comm)
 }
 
 /**
- * fork_exe - launches command with arguments
+ * make_turtlet - launches command with arguments
  * @name: command name used for error messages
  * @comm: arguments to the command
  * Return: 1 upon success, -1 if input or cmd NULL
  */
 
-int fork_exe(char *name, c_lst_t *comm)
+int make_turtlet(char *name, c_lst_t *comm)
 {
 	pid_t l = 0;
 	int s = 0, f = 0;
@@ -66,7 +66,7 @@ int fork_exe(char *name, c_lst_t *comm)
 	if (!name || !comm)
 		return (-1);
 	if (comm_data.op_array[comm_data.op_ind] == 0x3)
-		return (fork_exe_w_pipe(name, comm));
+		return (make_turtlets(name, comm));
 	l = fork();
 	if (l == -1)
 		perror(name), exit(EXIT_FAILURE);
@@ -83,19 +83,19 @@ int fork_exe(char *name, c_lst_t *comm)
 			f == 2 && !isatty(STDIN_FILENO) &&
 			comm_data.cmd_ind == comm_data.cmd_ct
 		)
-			free_comm_data(), _exit(f);
+			set_turtle_free_or_not(), _exit(f);
 	}
 	return (f);
 }
 
 /**
- * fork_exe_w_pipe - launches piped command with arguments
+ * make_turtlets - launches piped command with arguments
  * @name: command name used for error messages
  * @comm: arguments to the command
  * Return: 1 upon success, -1 if input or cmd NULL
  */
 
-int fork_exe_w_pipe(char *name, c_lst_t *comm)
+int make_turtlets(char *name, c_lst_t *comm)
 {
 	pid_t l = 0;
 	int s = 0, f = 0;
@@ -124,7 +124,7 @@ int fork_exe_w_pipe(char *name, c_lst_t *comm)
 			f == 2 && !isatty(STDIN_FILENO) &&
 			comm_data.cmd_ind == comm_data.cmd_ct
 		)
-			free_comm_data(), _exit(f);
+			set_turtle_free_or_not(), _exit(f);
 	}
 	return (f);
 }

@@ -1,4 +1,4 @@
-#include "_sh.h"
+#include "shell.h"
 
 /**
  * _getenv - custom getenv function, retrieves env var value
@@ -28,7 +28,7 @@ char *_getenv(char *var_name)
 		{
 			env_var = _strdup(capture), capture = NULL;
 			for (i = 0, env_copy = env_var;
-				(split[i] = sep(&env_copy, "=")); i++)
+				(split[i] = baby_turtles(&env_copy, "=")); i++)
 				;
 			value_str = _strdup(split[1]);
 			free(env_var), env_var = NULL;

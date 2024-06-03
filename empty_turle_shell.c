@@ -8,21 +8,20 @@
 
 int empty_turtle_shell(char *input)
 {
-	int iter = 0;
-	size_t num_spaces = 0;
+	int i = 0, num_spaces = 0;
 
 	if (input)
 	{
-		for (iter = 0; input[iter]; iter++)
+		for (i = 0; input[i]; i++)
 		{
-			if (input[iter] == '\n' ||
-					input[iter] == '\r' ||
-					input[iter] == ' ' ||
-					input[iter] == '\t')
+			if (input[i] == '\n' ||
+					input[i] == '\r' ||
+					input[i] == ' ' ||
+					input[i] == '\t')
 			{
 				num_spaces++;
 			}
 		}
 	}
-	return (num_spaces == strlen(input) ? 0 : -1);
+	return (num_spaces == _str_len(input) ? 0 : -1);
 }
