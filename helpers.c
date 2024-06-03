@@ -83,7 +83,7 @@ int make_turtlet(char *name, c_lst_t *comm)
 			f == 2 && !isatty(STDIN_FILENO) &&
 			comm_data.cmd_ind == comm_data.cmd_ct
 		)
-			set_turtle_free_or_not(), _exit(f);
+			set_turtle_free_or_not(), exit(f);
 	}
 	return (f);
 }
@@ -124,7 +124,7 @@ int make_turtlets(char *name, c_lst_t *comm)
 			f == 2 && !isatty(STDIN_FILENO) &&
 			comm_data.cmd_ind == comm_data.cmd_ct
 		)
-			set_turtle_free_or_not(), _exit(f);
+			set_turtle_free_or_not(), exit(f);
 	}
 	return (f);
 }
