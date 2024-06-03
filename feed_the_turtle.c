@@ -11,14 +11,16 @@
 
 ssize_t feed_the_turtle(char *prmptStyle, char **input, size_t *len)
 {
-	ssize_t gotLine = 0;
+	ssize_t gotLine = 0, e = 0;
 
 	if (isatty(STDIN_FILENO))
 		write(STDOUT_FILENO, prmptStyle, _str_len(prmptStyle));
 	gotLine = getline(input, len, stdin);
 	if (gotLine == EOF)
-		return (-1);
-	if (gotLine == 0)
-		return (1);
-	return (gotLine);
+		free(*input), exit(0);
+	else if (!gotLine)
+		return(-1);
+	if (empty_turtle_shell(*input))
+		e = -2;
+	return (!e ? gotLine : e);
 }

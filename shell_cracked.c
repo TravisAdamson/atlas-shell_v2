@@ -81,8 +81,7 @@ static int shell_cracked(char *data)
 		extract_string = NULL;
 	if (data_cpy)
 		free(data_cpy), data_cpy = NULL;
-	if (data != NULL)
-		free(data), data = NULL;
+
 	return (comm_data.cmd_ct ? 1 : 0);
 }
 
