@@ -20,6 +20,9 @@ int main(int argc, char **argv)
 
 	while (1)
 	{
+		comm_data.op_ind = 0, comm_data.op_add = 0, comm_data.op_ct = 0;
+		comm_data.cmd_ind = 0, comm_data.cmd_ct = 0;
+		
 		signal(SIGINT, handle_turtle_interrupt);
 		signal(SIGTSTP, handle_turtle_interrupt);
 		/**
