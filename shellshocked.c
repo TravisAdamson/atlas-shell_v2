@@ -9,11 +9,14 @@ c_data_t comm_data;
  * Return: 0 on success, -1 on error
  */
 
-int main(void)
+int main(int argc, char **argv)
 {
 	char *command_line = NULL;
 	size_t command_line_len = 0;
 	int prompt_check = 0;
+
+	(void)argc;
+	prog.prog_name = argv[0];
 
 	while (1)
 	{
