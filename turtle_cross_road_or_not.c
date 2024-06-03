@@ -16,7 +16,7 @@ int turtle_cross_road_or_not(c_lst_t *comms)
 			no_such_turtle(comms->comm, l_error);
 	}
 	else
-		turtle_does(comms);
+		turtle_homing(comms);
 	return (0);
 }
 
