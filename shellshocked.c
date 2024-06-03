@@ -13,6 +13,7 @@ int main(int argc, char **argv)
 {
 	char *command_line = NULL;
 	size_t command_line_len = 0;
+	int prompt_check = 0;
 
 	(void)argc;
 	prog.prog_name = argv[0];
@@ -24,8 +25,9 @@ int main(int argc, char **argv)
 		/**
 		 * * Get input from the user
 		 */
-		feed_the_turtle("Shellshocked: ", &comm_data.input, &command_line_len);
-
+		prompt_check = feed_the_turtle("Shellshocked: ", &comm_data.input, &command_line_len);
+		if (prompt_check < 0)
+			continue;
 		/**
 		 * Parse the input into an array of commands.
 		 */

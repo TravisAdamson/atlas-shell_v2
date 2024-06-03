@@ -12,7 +12,7 @@ int empty_turtle_shell(char *input)
 
 	if (input)
 	{
-		for (i = 0; input[i]; i++)
+		for (; input[i]; i++)
 		{
 			if (input[i] == '\n' ||
 					input[i] == '\r' ||
@@ -23,5 +23,5 @@ int empty_turtle_shell(char *input)
 			}
 		}
 	}
-	return (num_spaces == _str_len(input) ? 0 : -1);
+	return (num_spaces == _str_len(input) ? 1 : 0);
 }

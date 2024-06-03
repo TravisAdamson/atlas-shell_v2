@@ -67,7 +67,7 @@ typedef struct c_lst
  * @comms: doubly-linked list containing commands in sequence as entered
 */
 
-typedef struct comm_data
+typedef struct comm_dt
 {
 	char *input;
 	int cmd_ct;
@@ -79,18 +79,6 @@ typedef struct comm_data
 	int pipe_fd[2];
 	struct c_lst *comms;
 } c_data_t;
-
-/**
- * struct builtIn - struct to assist in calling built-in functions
- * @command_name: built-in function name
- * @command_function: function called if input = command_name, NULL otherwise
- */
-
-typedef struct builtIn
-{
-	char *command_name;
-	int (*command_function)();
-} builtIn_t;
 
 extern char **environ;
 extern p_data_t prog;
@@ -108,7 +96,7 @@ int turtle_cross_road_or_not(c_lst_t *comms);
 void handle_turtle_interrupt(int sig);
 int empty_turtle_shell(char *input);
 int turtle_surgery(char *data);
-ssize_t feed_the_turtle(char *prmptStyle, char **input, size_t *len);
+int feed_the_turtle(char *prmptStyle, char **input, size_t *len);
 int __attribute__ ((constructor)) env_load(void);
 void __attribute__ ((destructor)) env_free(void);
 char *_strcat(char *dest, char *src);

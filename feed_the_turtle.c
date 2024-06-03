@@ -9,9 +9,9 @@
  * Return: the number of characters read
  */
 
-ssize_t feed_the_turtle(char *prmptStyle, char **input, size_t *len)
+int feed_the_turtle(char *prmptStyle, char **input, size_t *len)
 {
-	ssize_t gotLine = 0, e = 0;
+	int gotLine = 0, e = 0;
 
 	if (isatty(STDIN_FILENO))
 		write(STDOUT_FILENO, prmptStyle, _str_len(prmptStyle));
@@ -21,6 +21,6 @@ ssize_t feed_the_turtle(char *prmptStyle, char **input, size_t *len)
 	else if (!gotLine)
 		return(-1);
 	if (empty_turtle_shell(*input))
-		e = -2;
+		e = -2, free(*input), *input = NULL;
 	return (!e ? gotLine : e);
 }
