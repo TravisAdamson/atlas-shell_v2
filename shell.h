@@ -84,6 +84,92 @@ extern char **environ;
 extern p_data_t prog;
 extern c_data_t comm_data;
 
+/**
+ * turtle_interupt.c
+*/
+void handle_turtle_interrupt(int sig);
+
+/**
+ * feed_the_turtle.c
+*/
+int feed_the_turtle(char *prmptStyle, char **input, size_t *len);
+
+/**
+ * shell_cracked.c
+*/
+int turtle_surgery(char *data);
+
+/**
+ * turtle_cross_road_or_not.c
+*/
+int turtle_cross_road_or_not(c_lst_t *comms);
+int turtle_does(c_lst_t *comm);
+int find_nest(void);
+char **turtles_nest(char *comm);
+int turtle_eggs(char *p_string, char *comm);
+
+/**
+ * set_turtle_free_or_not.c
+*/
+void set_turtle_free_or_not(void);
+void free_strvec(char **strvec);
+
+/**
+ * _getenv.c
+*/
+char *_getenv(char *var_name);
+int __attribute__ ((constructor)) env_load(void);
+void __attribute__ ((destructor)) env_free(void);
+
+/**
+ * baby_turtles.c
+*/
+char *baby_turtles(char **data, char *delim);
+
+/**
+ * empty_turtle_shell.c
+*/
+int empty_turtle_shell(char *input);
+
+/**
+ * helpers.c
+*/
+char **clear_debris(char *c_string);
+char **find_mate(char **ps, char *comm);
+int make_turtlet(char *name, c_lst_t *comm);
+int make_turtlets(char *name, c_lst_t *comm);
+char *str_concat(char *dest, char *src);
+
+/**
+ * no_such_turtle.c
+*/
+void no_such_turtle(char **comm, int code);
+
+/**
+ * strdup.c
+*/
+char *_strdup(char *str);
+
+/**
+ * string.c
+*/
+char *_strcat(char *dest, char *src);
+int _strcmp(char *str1, char *str2);
+int _strncmp(char *str1, char *str2, int end);
+char *_strcpy(char *dest, char *src);
+int _str_len(char *str);
+
+/**
+ * string2.c
+*/
+int _isdigit(int chr);
+int _atoi(char *input_string);
+char *_strsep(char **str, const char *delim);
+size_t _strcspn(const char *str1, const char *str2);
+
+/**
+ * turtle_environment.c
+*/
 int turtle_environment(char **comm);
 int rehome_turtle(char *path);
 int cd_assist(char *dest_dir, int *changed);
@@ -92,50 +178,27 @@ int turtle_is_free(char *code, char **comm);
 int change_nest(char *name, char *val);
 int clear_nest(char *name);
 
-int turtle_cross_road_or_not(c_lst_t *comms);
-void handle_turtle_interrupt(int sig);
-int empty_turtle_shell(char *input);
-int turtle_surgery(char *data);
-int feed_the_turtle(char *prmptStyle, char **input, size_t *len);
-int __attribute__ ((constructor)) env_load(void);
-void __attribute__ ((destructor)) env_free(void);
-char *_strcat(char *dest, char *src);
-int _strcmp(char *str1, char *str2);
-int _strncmp(char *str1, char *str2, int end);
-char *_strcpy(char *dest, char *src);
-int _str_len(char *str);
-char *_strdup(char *str);
-char *_strsep(char **str, const char *delim);
-size_t _strcspn(const char *str1, const char *str2);
-char *str_concat(char *dest, char *src);
-
-void *_calloc(unsigned int nmemb, unsigned int size);
-char *_memcpy(char *dest, char *src, unsigned int n);
-void *_realloc(void *memory, size_t old_size, size_t new_size);
-
-char *_getenv(char *var_name);
-int _isdigit(int chr);
-int _atoi(char *input_string);
-
-char **find_mate(char **ps, char *comm);
-char **clear_debris(char *c_string);
-int turtle_does(c_lst_t *comm);
-int find_nest(void);
-char **turtles_nest(char *comm);
-int turtle_eggs(char *p_string, char *comm);
-void free_strvec(char **strvec);
-void set_turtle_free_or_not(void);
-char *baby_turtles(char **data, char *delim);
-int make_turtlets(char *name, c_lst_t *comm);
-int make_turtlet(char *name, c_lst_t *comm);
-void no_such_turtle(char **comm, int code);
-int turtle_nap(c_lst_t *comm);
-int turtle_homing(c_lst_t *comm);
-int current_length(int *ops);
-int turtle_current(c_lst_t *comm, int p_counted);
+/**
+ * turtle_gps.c
+*/
 int turn_right(c_lst_t *comm);
 int right_uturn(c_lst_t *comm);
 int turn_left(c_lst_t *comm);
 int left_uturn(c_lst_t *comm);
+
+/**
+ * turtle_homing.c
+*/
+int turtle_homing(c_lst_t *comm);
+int turtle_nap(c_lst_t *comm);
+int turtle_current(c_lst_t *comm, int p_counted);
+int current_length(int *ops);
+
+/**
+ * turtle_memmory.c
+*/
+void *_calloc(unsigned int nmemb, unsigned int size);
+char *_memcpy(char *dest, char *src, unsigned int n);
+void *_realloc(void *memory, size_t old_size, size_t new_size);
 
 #endif
