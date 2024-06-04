@@ -305,7 +305,9 @@ This function loads the shell environment from configuration files such as .bash
 This function releases the memory allocated for the shell environment, including environment variables and other data structures.
 
 
-### 
+### _strcat: This function concatenates two strings.
+
+This function appends a copy of the null-terminated string src to the end of the null-terminated string dest, overwriting the null character at the end of dest, and then adds a terminating null character. The strings may not overlap, and the dest string must have enough space for the result.
 
 
 ### 
