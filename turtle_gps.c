@@ -92,7 +92,7 @@ int turn_left(c_lst_t *comm)
 				stderr, "%s: 1: cannot open %s: No such file\n",
 				prog.prog_name, comm->next->comm[0]
 			);
-			no_such_turtle(comm->comm, 2);
+			no_such_turtle(comm->comm, 0);
 		}
 		return (-1);
 	}
