@@ -137,7 +137,7 @@ int turtle_is_free(char *code, char **comm)
 		exit(2);
 	}
 
-	if (s == 2 && comm_data.cmd_ct > 1)
+	if (s == 2 && comm_data.cmd_ct > 1 && comm_data.op_ct < 1)
 		set_turtle_free_or_not(), exit(s);
 		
 	set_turtle_free_or_not();
