@@ -39,6 +39,11 @@ void no_such_turtle(char **comm, int code)
 			comm_data.cmd_ind < comm_data.cmd_ct
 		)
 			return;
+
+		if (code == 2 && comm_data.cmd_ct > 1)
+		{
+			set_turtle_free_or_not(), exit(code);
+		}
 		if (code == 2)
 			code = 0;
 		if (code == 0 && comm_data.cmd_ct > 1)
