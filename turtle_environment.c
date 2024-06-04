@@ -135,6 +135,9 @@ int turtle_is_free(char *code, char **comm)
 		s = 2;
 	set_turtle_free_or_not();
 
+	if (s == 2)
+		s = 0;
+		
 	exit(s);
 	return (0);
 }
