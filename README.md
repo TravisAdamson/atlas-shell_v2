@@ -177,3 +177,10 @@ SHELLSHOCKED
 You can run any cool command in the cool shell by providing its full path or if the command is in the PATH directory, you can just type the command name and press Enter. The cool shell will take care of the rest!
 
 Enjoy the cool shell and have a blast with your terminal adventures! You will be shocked at what you can do!
+
+
+## The Shell Main Components
+
+### check_turtle: This function checks whether a given file and/or directory exist. It returns -1 if the file doesn't exist, 0 if the directory doesn't exist, and 1 if both file and directory exist.
+This function first checks if the provided file or directory exists by using the access system call. If the file or directory exists, it returns 1. If only the file exists, it returns 0. If neither the file nor the directory exists, it returns -1.
+
