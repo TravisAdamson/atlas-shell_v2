@@ -23,6 +23,8 @@ Shellshocked is a super cool shell program that allows you to execute commands a
 12. [Valgrind for Memory Leak Check](#valgrind-for-memory-leak-check)
 13. [Show Examples of What It Does and the Features It Has](#show-examples-of-what-it-does-and-the-features-it-has)
 14. [The Shell Can Run Any Command Specified by the User](#the-shell-can-run-any-command-specified-by-the-user)
+14. [The Shell Main Components and the Explanations](#the-shell-Main-Components-and-the-Explanations)
+
 
 ## Main Components
 
@@ -179,7 +181,11 @@ You can run any cool command in the cool shell by providing its full path or if 
 Enjoy the cool shell and have a blast with your terminal adventures! You will be shocked at what you can do!
 
 
-## The Shell Main Components
+
+
+
+
+## The Shell Main Components and the Explanations
 
 ### 1. check_turtle
 - **Description:** This function checks whether a given file and/or directory exist. It returns -1 if the file doesn't exist, 0 if the directory doesn't exist, and 1 if both file and directory exist.
