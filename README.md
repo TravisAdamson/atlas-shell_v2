@@ -2,7 +2,7 @@
 
 _You have been Shellshocked!_
 
-![Shellshocked](https://github.com/TravisAdamson/holbertonschool-simple_shell/blob/ed3c9c65ff0cf911db1742f439367f6d0a8b79af/Shellshockedneon.gif)
+![Shellshocked](https://github.com/TravisAdamson/atlas-shell_v2/blob/244524fc8a13d7d9b136b90635453d26dc408146/ShellShocked2.gif)
 
 ## Project Description
 
