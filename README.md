@@ -182,7 +182,7 @@ Enjoy the cool shell and have a blast with your terminal adventures! You will be
 
 
 
-
+# Additional Operation Info:
 
 
 ## The Shell Main Components and the Explanations
