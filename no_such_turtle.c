@@ -23,10 +23,15 @@ void no_such_turtle(char **comm, int code)
 		if (
 			comm_data.op_ct &&
 			(
-				comm_data.op_array[comm_data.op_ind] == 0x3 ||
 				comm_data.op_array[comm_data.op_ind] == 0x5 ||
 				comm_data.op_array[comm_data.op_ind] == 0x6
 			)
+		)
+			code = 0;
+		if (
+			comm_data.op_ct &&
+			comm_data.op_array[comm_data.op_ind] == 0x3 &&
+			comm[0] == comm_data.comms[0].cmd_name
 		)
 			code = 0;
 		if (
@@ -58,3 +63,4 @@ static void turtle_not_found(char *comm)
 {
 	fprintf(stderr, "%s: 1: %s: not found\n", prog.prog_name, comm);
 }
+
