@@ -23,6 +23,7 @@ void no_such_turtle(char **comm, int code)
 		if (
 			comm_data.op_ct &&
 			(
+				comm_data.op_array[comm_data.op_ind] == 0x3 ||
 				comm_data.op_array[comm_data.op_ind] == 0x5 ||
 				comm_data.op_array[comm_data.op_ind] == 0x6
 			)
