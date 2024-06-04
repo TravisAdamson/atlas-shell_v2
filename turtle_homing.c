@@ -87,7 +87,7 @@ int turtle_current(c_lst_t *comm, int p_counted)
 			temp = temp->next, p_comp++
 	)
 	{
-		turtle_does(temp);
+		l_error = turtle_does(temp);
 		if (l_error)
 			no_such_turtle(temp->comm, l_error);
 	}
