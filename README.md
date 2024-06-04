@@ -180,7 +180,7 @@ You can run any cool command in the cool shell by providing its full path or if 
 
 Enjoy the cool shell and have a blast with your terminal adventures! You will be shocked at what you can do!
 
-
+<br/><br/><br/><br/>
 
 # Additional Operation Info:
 
