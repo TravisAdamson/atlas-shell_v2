@@ -81,11 +81,13 @@ Shellshocked is a super cool shell program that allows you to execute commands a
 1. Clone the repository to your local machine.
 2. Navigate to the project directory.
 3. Compile the project using GCC with cool flags for error checking and style:
-
-gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh   --------------------------------------------------------------------------------------------
-
+```
+gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh
+```
 4. Run the shell:
+```
 ./hsh
+```
 
 ## To access the manual page for your Shellshocked shell, use the man command followed by the name of your shell:
 1. Navigate to the project directory.
@@ -119,23 +121,33 @@ Shellshocked is licensed under the Cool MIT License ([MIT](https://opensource.or
 
 ## Tests
 Shellshocked includes cool unit tests to ensure its functionalities are working correctly. To run the tests, use the following command:
+```
 make test
+```
 
 ## Include the GCC Used and Why
 The shell is compiled using the GCC compiler with the following cool flags for strict error checking and style:
-gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh   -----------------------------------------------------------------------------------------------------
 
+```
+gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh
+```
 
 ## Valgrind for Memory Leak Check
 To check for memory leaks in the cool shell, use Valgrind with the following command:
+```
 valgrind --leak-check=full --track-origins=yes --show-leak-kinds=all ./hsh
+```
 
 ## Show Examples of What It Does and the Features It Has
 Example 1: Running basic commands
+```
 $ ls
 turtle_cross_road_or_not.c turtle_environment.c turtle_gps.c turtle_homing.c turtle_interrupt.c turtle_memmory.c
+```
 
 Example 2: Running `ls` with flags
+
+```
 $ ls -la
 total 324
 drwxrwxrwx 1 mattie mattie  4096 Jun  3 18:03 .
@@ -147,14 +159,19 @@ drwxrwxrwx 1 mattie mattie  4096 Jun  3 17:33 ..
 -rwxrwxrwx 1 mattie mattie   288 Jun  3 17:11 turtle_interrupt.c
 -rwxrwxrwx 1 mattie mattie  1564 Jun  3 17:11 turtle_memmory.c
 ...
+```
 
 Example 3: Displaying the current working directory
+```
 $ pwd
 /atlas-shell_v2/readme
+```
 
 Example 4: Echoing an environmental variable
+```
 $ echo SHELLSHOCKED
 SHELLSHOCKED
+```
 
 ## The Shell Can Run Any Command Specified by the User
 You can run any cool command in the cool shell by providing its full path or if the command is in the PATH directory, you can just type the command name and press Enter. The cool shell will take care of the rest!
