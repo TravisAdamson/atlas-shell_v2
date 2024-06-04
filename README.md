@@ -191,7 +191,11 @@ This function executes a command with its arguments.
 
 This function first parses the command line input to separate the command and its arguments. Then, it uses the fork system call to create a child process. In the child process, it uses the execve system call to execute the command with its arguments.
 
-### 
+### turn_right: 
+
+`This function redirects the standard output to a file, truncating the file if it already exists.`
+
+This function first opens the specified file for writing using the open system call, specifying the O_WRONLY and O_CREAT flags. Then, it uses the dup2 system call to duplicate the file descriptor for standard output (stdout) to the file descriptor associated with the opened file. If the file already exists, it truncates its contents.
 
 
 ### 
