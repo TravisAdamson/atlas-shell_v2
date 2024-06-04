@@ -183,13 +183,13 @@ Enjoy the cool shell and have a blast with your terminal adventures! You will be
 
 ### check_turtle: 
 `This function checks whether a given file and/or directory exist. It returns -1 if the file doesn't exist, 0 if the directory doesn't exist, and 1 if both file and directory exist.`
-This function first checks if the provided file or directory exists by using the access system call. If the file or directory exists, it returns 1. If only the file exists, it returns 0. If neither the file nor the directory exists, it returns -1.
+#### This function first checks if the provided file or directory exists by using the access system call. If the file or directory exists, it returns 1. If only the file exists, it returns 0. If neither the file nor the directory exists, it returns -1.
 ### turtle_does: 
 `This function executes a command with its arguments.`
-This function first parses the command line input to separate the command and its arguments. Then, it uses the fork system call to create a child process. In the child process, it uses the execve system call to execute the command with its arguments.
+#### This function first parses the command line input to separate the command and its arguments. Then, it uses the fork system call to create a child process. In the child process, it uses the execve system call to execute the command with its arguments.
 ### turn_right: 
 `This function redirects the standard output to a file, truncating the file if it already exists.`
-This function first opens the specified file for writing using the open system call, specifying the O_WRONLY and O_CREAT flags. Then, it uses the dup2 system call to duplicate the file descriptor for standard output (stdout) to the file descriptor associated with the opened file. If the file already exists, it truncates its contents.
+#### This function first opens the specified file for writing using the open system call, specifying the O_WRONLY and O_CREAT flags. Then, it uses the dup2 system call to duplicate the file descriptor for standard output (stdout) to the file descriptor associated with the opened file. If the file already exists, it truncates its contents.
 ### 
 
 
