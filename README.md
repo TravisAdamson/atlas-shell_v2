@@ -310,7 +310,9 @@ This function releases the memory allocated for the shell environment, including
 This function appends a copy of the null-terminated string src to the end of the null-terminated string dest, overwriting the null character at the end of dest, and then adds a terminating null character. The strings may not overlap, and the dest string must have enough space for the result.
 
 
-### 
+### _strcmp: This function compares two strings.
+
+This function compares the null-terminated strings str1 and str2. It returns an integer less than, equal to, or greater than zero if str1 is found, respectively, to be less than, to match, or be greater than str2.
 
 
 ### 
