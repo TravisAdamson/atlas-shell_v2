@@ -31,7 +31,7 @@ void no_such_turtle(char **comm, int code)
 		if (
 			comm_data.op_ct &&
 			comm_data.op_array[comm_data.op_ind] == 0x3 &&
-			comm[0] == comm_data.comms[0].cmd_name
+			comm[0] == "hbtn"
 		)
 			code = 0;
 		if (
