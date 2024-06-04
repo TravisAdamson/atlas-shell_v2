@@ -221,3 +221,163 @@ Enjoy the cool shell and have a blast with your terminal adventures! You will be
 - **Description:** This function handles SIGINT signal.
 - **Functionality:** This function sets up a signal handler for the SIGINT signal using the `signal` function. When the SIGINT signal is received (e.g., when the user presses Ctrl+C), the signal handler is called, and the shell prints a new prompt instead of terminating the program.
 
+### 11. _calloc
+- **Description:** Allocates memory for an array with malloc.
+- **Functionality:** This function allocates memory for an array of elements, each with a size of `size` bytes. It initializes the allocated memory to zero using the `memset` function and returns a pointer to the allocated memory.
+
+### 12. _memcpy
+- **Description:** Copies n bytes of src to dest.
+- **Functionality:** This function copies `n` bytes from the memory area pointed to by `src` to the memory area pointed to by `dest`. It returns a pointer to the destination memory area (`dest`).
+
+### 13. _realloc
+- **Description:** Reallocates memory and copies memory to the new allocation.
+- **Functionality:** This function changes the size of the memory block pointed to by `ptr` to `size` bytes. If the reallocation is successful, it copies the existing data from the old memory block to the new memory block. If the reallocation fails, it returns `NULL`. It returns a pointer to the reallocated memory block.
+
+### 14. turtle_environment
+- **Description:** Sets up the environment for the shell.
+- **Functionality:** This function initializes the shell environment by setting up environment variables such as `PATH` and `HOME`. It also initializes other variables and data structures used by the shell.
+
+### 15. rehome_turtle
+- **Description:** Changes the current working directory of the shell.
+- **Functionality:** This function changes the current working directory of the shell to the directory specified by the `path` parameter using the `chdir` system call.
+
+### 16. cd_assist
+- **Description:** Assists in changing directories.
+- **Functionality:** This function handles changing directories by calling the `chdir` system call. It handles special cases such as changing to the home directory (`cd` without arguments) and changing to the previous directory (`cd -`).
+
+### 17. view_nest
+- **Description:** Prints out the current shell environment.
+- **Functionality:** This function displays the current shell environment, including environment variables and their values.
+
+### 18. turtle_is_free
+- **Description:** Checks if a command is available in the shell environment.
+- **Functionality:** This function searches the shell environment for the specified command and returns true if the command is found, otherwise false.
+
+### 19. change_nest
+- **Description:** Updates a shell environment variable.
+- **Functionality:** This function updates the value of the specified environment variable in the shell environment.
+
+### 20. clear_nest
+- **Description:** Clears a shell environment variable.
+- **Functionality:** This function removes the specified environment variable from the shell environment.
+
+### 21. turtle_cross_road_or_not
+- **Description:** Launches a command with its arguments as a child process.
+- **Functionality:** This function uses the `fork` system call to create a child process, and the `execve` system call to execute the specified command with its arguments in the child process.
+
+### 22. empty_turtle_shell
+- **Description:** Checks if the shell input is empty.
+- **Functionality:** This function checks if the shell input consists only of whitespace characters (spaces, tabs, newlines, etc.). If the input is empty or contains only whitespace, it returns true; otherwise, it returns false.
+
+### 23. turtle_surgery
+- **Description:** Handles the execution of shell commands.
+- **Functionality:** This function first checks if the command is a built-in command (e.g., `cd`, `exit`). If it is a built-in command, it executes the command using the corresponding built-in function. If it is not a built-in command, it executes the command using the `turtle_cross_road_or_not` function.
+
+### 24. feed_the_turtle
+- **Description:** Reads user input from the terminal.
+- **Functionality:** This function reads a line of input from the terminal using the `getline` function and returns the input as a string.
+
+### 25. env_load
+- **Description:** Loads the shell environment.
+- **Functionality:** This function loads the shell environment from configuration files such as `.bashrc` or `.profile`. It sets up environment variables and other settings based on the contents of these files.
+
+### 26. env_free
+- **Description:** Frees the shell environment.
+- **Functionality:** This function releases the memory allocated for the shell environment, including environment variables and other data structures.
+
+### 27. _strcat
+- **Description:** Concatenates two strings.
+- **Functionality:** This function appends a copy of the null-terminated string `src` to the end of the null-terminated string `dest`, overwriting the null character at the end of `dest`, and then adds a terminating null character. The strings may not overlap, and the `dest` string must have enough space for the result.
+
+### 28. _strcmp
+- **Description:** Compares two strings.
+- **Functionality:** This function compares the null-terminated strings `str1` and `str2`. It returns an integer less than, equal to, or greater than zero if `str1` is found, respectively, to be less than, to match, or be greater than `str2`.
+
+### 29. _strncmp
+- **Description:** Compares two strings up to a specified length.
+- **Functionality:** This function compares at most the first `n` bytes of the null-terminated strings `str1` and `str2`. It returns an integer less than, equal to, or greater than zero if `str1` is found, respectively, to be less than, to match, or be greater than `str2`.
+
+### 30. _strcpy
+- **Description:** Copies a string.
+- **Functionality:** This function copies the null-terminated string `src` to the memory pointed to by `dest`. It returns a pointer to `dest`.
+
+### 31. _str_len
+- **Description:** Calculates the length of a string.
+- **Functionality:** This function calculates the length of the null-terminated string `str`, excluding the terminating null character.
+
+### 32. _strdup
+- **Description:** Duplicates a string.
+- **Functionality:** This function duplicates the null-terminated string `str` using memory allocated with `malloc`. It returns a pointer to the duplicated string.
+
+### 33. _strsep
+- **Description:** Tokenizes a string.
+- **Functionality:** This function searches the null-terminated string `str` for the first occurrence of any character in the null-terminated string `delim`. It replaces the delimiter character found in `str` with a null character and returns a pointer to the beginning of the token.
+
+### 34. _strcspn
+- **Description:** Calculates the length of the initial segment of str1 that consists of characters not in str2.
+- **Functionality:** This function calculates the length of the initial segment of the null-terminated string `str1` that consists of characters not in the null-terminated string `str2`.
+
+### 35. str_concat
+- **Description:** Concatenates two strings.
+- **Functionality:** This function appends a copy of the null-terminated string `src` to the end of the null-terminated string `dest`, overwriting the null character at the end of `dest`, and then adds a terminating null character. The strings may not overlap, and the `dest` string must have enough space for the result.
+
+### 36. _getenv
+- **Description:** Retrieves the value of an environment variable.
+- **Functionality:** This function searches the shell environment for the specified environment variable `var_name` and returns a pointer to its value.
+
+### 37. _isdigit
+- **Description:** Checks if a character is a digit.
+- **Functionality:** This function checks if the character `chr` is a digit (0 through 9) according to the ASCII character set. It returns a non-zero value if `chr` is a digit, otherwise returns 0.
+
+### 38. _atoi
+- **Description:** Converts a string to an integer.
+- **Functionality:** This function parses the null-terminated string `input_string` as an integer and returns the result.
+
+### 39. find_mate
+- **Description:** Finds a command in the shell environment.
+- **Functionality:** This function searches the shell environment for the specified command `comm` and returns a pointer to its location.
+
+### 40. clear_debris
+- **Description:** Removes redundant characters from a string.
+- **Functionality:** This function removes any occurrences of the characters in the null-terminated string `c_string` from the null-terminated string `str`.
+
+### 41. find_nest
+- **Description:** Finds the shell environment.
+- **Functionality:** This function returns a pointer to the shell environment.
+
+### 42. turtles_nest
+- **Description:** Creates a shell environment.
+- **Functionality:** This function creates a new shell environment using memory allocated with `malloc` and returns a pointer to it.
+
+### 43. turtle_eggs
+- **Description:** Executes shell commands.
+- **Functionality:** This function parses the null-terminated string `p_string` as shell commands and executes them. It returns the exit status of the last executed command.
+
+### 44. free_strvec
+- **Description:** Frees memory allocated to a string vector.
+- **Functionality:** This function releases the memory allocated for the string vector `strvec`, including the strings it contains.
+
+### 45. set_turtle_free_or_not
+- **Description:** Sets the shell environment.
+- **Functionality:** This function sets the shell environment to the specified value.
+
+### 46. baby_turtles
+- **Description:** Tokenizes a string.
+- **Functionality:** This function breaks the null-terminated string `data` into tokens using the null-terminated string `delim` as the delimiter. It returns a pointer to the first token found.
+
+### 47. make_turtlets
+- **Description:** Creates a new shell environment.
+- **Functionality:** This function creates a new shell environment with the specified name `name` and the specified command list `comm`. It returns a pointer to the newly created shell environment.
+
+### 48. make_turtlet
+- **Description:** Creates a new shell environment.
+- **Functionality:** This function creates a new shell environment with the specified name `name` and the specified command list `comm`. It returns a pointer to the newly created shell environment.
+
+### 49. no_such_turtle
+- **Description:** Handles command not found errors.
+- **Functionality:** This function prints an error message indicating that the specified command `comm` was not found in the shell environment.
+
+### 50. left_uturn
+- **Description:** Redirects the standard input from a file.
+- **Functionality:** This function redirects the standard input (`stdin`) from the specified file.
+
