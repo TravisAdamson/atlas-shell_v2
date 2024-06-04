@@ -181,294 +181,43 @@ Enjoy the cool shell and have a blast with your terminal adventures! You will be
 
 ## The Shell Main Components
 
-### check_turtle: 
-#### `This function checks whether a given file and/or directory exist. It returns -1 if the file doesn't exist, 0 if the directory doesn't exist, and 1 if both file and directory exist.`
-This function first checks if the provided file or directory exists by using the access system call. If the file or directory exists, it returns 1. If only the file exists, it returns 0. If neither the file nor the directory exists, it returns -1.
-### turtle_does: 
-#### `This function executes a command with its arguments.`
-This function first parses the command line input to separate the command and its arguments. Then, it uses the fork system call to create a child process. In the child process, it uses the execve system call to execute the command with its arguments.
-### turn_right: 
-#### `This function redirects the standard output to a file, truncating the file if it already exists.`
-This function first opens the specified file for writing using the open system call, specifying the O_WRONLY and O_CREAT flags. Then, it uses the dup2 system call to duplicate the file descriptor for standard output (stdout) to the file descriptor associated with the opened file. If the file already exists, it truncates its contents.
-### right_uturn: This function redirects the standard output to a file, appending to the file if it already exists.
+### 1. check_turtle
+- **Description:** This function checks whether a given file and/or directory exist. It returns -1 if the file doesn't exist, 0 if the directory doesn't exist, and 1 if both file and directory exist.
+- **Functionality:** This function first checks if the provided file or directory exists by using the `access` system call. If the file or directory exists, it returns 1. If only the file exists, it returns 0. If neither the file nor the directory exists, it returns -1.
 
-This function first opens the specified file for writing using the open system call, specifying the O_WRONLY, O_CREAT, and O_APPEND flags. Then, it uses the dup2 system call to duplicate the file descriptor for standard output (stdout) to the file descriptor associated with the opened file. If the file already exists, it appends its contents.
+### 2. turtle_does
+- **Description:** This function executes a command with its arguments.
+- **Functionality:** This function first parses the command line input to separate the command and its arguments. Then, it uses the `fork` system call to create a child process. In the child process, it uses the `execve` system call to execute the command with its arguments.
 
+### 3. turn_right
+- **Description:** This function redirects the standard output to a file, truncating the file if it already exists.
+- **Functionality:** This function first opens the specified file for writing using the `open` system call, specifying the `O_WRONLY` and `O_CREAT` flags. Then, it uses the `dup2` system call to duplicate the file descriptor for standard output (`stdout`) to the file descriptor associated with the opened file. If the file already exists, it truncates its contents.
 
-### turn_left: This function redirects the standard input from a file.
+### 4. right_uturn
+- **Description:** This function redirects the standard output to a file, appending to the file if it already exists.
+- **Functionality:** This function first opens the specified file for writing using the `open` system call, specifying the `O_WRONLY`, `O_CREAT`, and `O_APPEND` flags. Then, it uses the `dup2` system call to duplicate the file descriptor for standard output (`stdout`) to the file descriptor associated with the opened file. If the file already exists, it appends its contents.
 
-This function first opens the specified file for reading using the open system call, specifying the O_RDONLY flag. Then, it uses the dup2 system call to duplicate the file descriptor for standard input (stdin) to the file descriptor associated with the opened file.
+### 5. turn_left
+- **Description:** This function redirects the standard input from a file.
+- **Functionality:** This function first opens the specified file for reading using the `open` system call, specifying the `O_RDONLY` flag. Then, it uses the `dup2` system call to duplicate the file descriptor for standard input (`stdin`) to the file descriptor associated with the opened file.
 
+### 6. turtle_homing
+- **Description:** This function executes commands based on operators present in the input.
+- **Functionality:** This function first parses the command line input to identify any operators such as pipes (`|`), redirection (`>`, `>>`, `<`), or background execution (`&`). It then uses a combination of the other functions to execute the commands accordingly, setting up pipelines, redirecting standard input and output, and handling background processes as needed.
 
-### turtle_homing: This function executes commands based on operators present in the input.
+### 7. turtle_nap
+- **Description:** This function executes a command without waiting for its completion.
+- **Functionality:** This function is similar to `turtle_does`, but it does not wait for the child process to complete before returning to the shell prompt. It uses the `fork` system call to create a child process and the `execve` system call to execute the command with its arguments in the child process, while the parent process continues to wait for user input.
 
-This function first parses the command line input to identify any operators such as pipes (|), redirection (>, >>, <), or background execution (&). It then uses a combination of the other functions to execute the commands accordingly, setting up pipelines, redirecting standard input and output, and handling background processes as needed.
+### 8. turtle_current
+- **Description:** This function sets up and executes pipelines.
+- **Functionality:** This function first parses the command line input to identify and separate multiple commands connected by pipes (`|`). It then uses the `pipe` system call to create a pipe for each pair of commands. It creates child processes for each command in the pipeline, setting up input and output redirection using the `dup2` system call to connect the output of one command to the input of the next command in the pipeline. Finally, it executes each command using the `execve` system call.
 
+### 9. current_length
+- **Description:** This function counts the number of pipes in the command line input.
+- **Functionality:** This function iterates through the command line input character by character, counting the occurrences of the pipe (`|`) character. It returns the total count of pipes found.
 
+### 10. handle_turtle_interrupt
+- **Description:** This function handles SIGINT signal.
+- **Functionality:** This function sets up a signal handler for the SIGINT signal using the `signal` function. When the SIGINT signal is received (e.g., when the user presses Ctrl+C), the signal handler is called, and the shell prints a new prompt instead of terminating the program.
 
-### turtle_nap: This function executes a command without waiting for its completion.
-
-This function is similar to turtle_does, but it does not wait for the child process to complete before returning to the shell prompt. It uses the fork system call to create a child process and the execve system call to execute the command with its arguments in the child process, while the parent process continues to wait for user input.
-
-
-### turtle_current: This function sets up and executes pipelines.
-
-This function first parses the command line input to identify and separate multiple commands connected by pipes (|). It then uses the pipe system call to create a pipe for each pair of commands. It creates child processes for each command in the pipeline, setting up input and output redirection using the dup2 system call to connect the output of one command to the input of the next command in the pipeline. Finally, it executes each command using the execve system call.
-
-
-### current_length: This function counts the number of pipes in the command line input.
-
-This function iterates through the command line input character by character, counting the occurrences of the pipe (|) character. It returns the total count of pipes found.
-
-
-### handle_turtle_interrupt: This function handles SIGINT signal.
-
-This function sets up a signal handler for the SIGINT signal using the signal function. When the SIGINT signal is received (e.g., when the user presses Ctrl+C), the signal handler is called, and the shell prints a new prompt instead of terminating the program
-
-
-### _calloc: Allocates memory for an array with malloc.
-This function allocates memory for an array of elements, each with a size of size bytes. It initializes the allocated memory to zero using the memset function and returns a pointer to the allocated memory.
-
-
-
-### _memcpy: Copies n bytes of src to dest.
-This function copies n bytes from the memory area pointed to by src to the memory area pointed to by dest. It returns a pointer to the destination memory area (dest).
-
-
-### _realloc: Reallocates memory and copies memory to the new allocation.
-This function changes the size of the memory block pointed to by ptr to size bytes. If the reallocation is successful, it copies the existing data from the old memory block to the new memory block. If the reallocation fails, it returns NULL. It returns a pointer to the reallocated memory bloc
-
-
-### turtle_environment: This function sets up the environment for the shell.
-
-This function initializes the shell environment by setting up environment variables such as PATH and HOME. It also initializes other variables and data structures used by the shell.
-
-
-### rehome_turtle: This function changes the current working directory of the shell.
-
-This function changes the current working directory of the shell to the directory specified by the path parameter using the chdir system call.
-
-
-### cd_assist: This function assists in changing directories.
-
-This function handles changing directories by calling the chdir system call. It handles special cases such as changing to the home directory (cd without arguments) and changing to the previous directory (cd -).
-
-
-### view_nest: This function prints out the current shell environment.
-
-This function displays the current shell environment, including environment variables and their values.
-
-
-### turtle_is_free: This function checks if a command is available in the shell environment.
-
-This function searches the shell environment for the specified command and returns true if the command is found, otherwise false.
-
-
-### change_nest: This function updates a shell environment variable.
-
-This function updates the value of the specified environment variable in the shell environment.
-
-
-### clear_nest: This function clears a shell environment variable.
-
-This function removes the specified environment variable from the shell environment.
-
-
-### turtle_cross_road_or_not: This function launches a command with its arguments as a child process.
-
-This function uses the fork system call to create a child process, and the execve system call to execute the specified command with its arguments in the child process.
-
-
-
-### empty_turtle_shell: This function checks if the shell input is empty.
-
-This function checks if the shell input consists only of whitespace characters (spaces, tabs, newlines, etc.). If the input is empty or contains only whitespace, it returns true; otherwise, it returns false.
-
-
-### turtle_surgery: This function handles the execution of shell commands.
-
-This function first checks if the command is a built-in command (e.g., cd, exit). If it is a built-in command, it executes the command using the corresponding built-in function. If it is not a built-in command, it executes the command using the turtle_cross_road_or_not function.
-
-
-### feed_the_turtle: This function reads user input from the terminal.
-
-This function reads a line of input from the terminal using the getline function and returns the input as a string.
-
-
-### env_load: This function loads the shell environment.
-
-This function loads the shell environment from configuration files such as .bashrc or .profile. It sets up environment variables and other settings based on the contents of these files.
-
-
-### env_free: This function frees the shell environment.
-
-This function releases the memory allocated for the shell environment, including environment variables and other data structures.
-
-
-### _strcat: This function concatenates two strings.
-
-This function appends a copy of the null-terminated string src to the end of the null-terminated string dest, overwriting the null character at the end of dest, and then adds a terminating null character. The strings may not overlap, and the dest string must have enough space for the result.
-
-
-### _strcmp: This function compares two strings.
-
-This function compares the null-terminated strings str1 and str2. It returns an integer less than, equal to, or greater than zero if str1 is found, respectively, to be less than, to match, or be greater than str2.
-
-
-### 
-
-
-### 
-
-
-### 
-
-
-### 
-
-
-### 
-
-
-### 
-
-
-### 
-
-
-### 
-
-
-### 
-
-
-### 
-
-
-### 
-
-
-### 
-
-
-###
-
-
-### 
-
-
-### 
-
-
-### 
-
-
-### 
-
-
-### 
-
-
-### 
-
-
-### 
-
-
-### 
-
-
-### 
-
-
-### 
-
-
-### 
-
-
-### 
-
-
-### 
-
-
-### 
-
-
-### 
-
-
-### 
-
-
-### 
-
-
-### 
-
-
-### 
-
-
-### 
-
-
-### 
-
-
-### 
-
-
-### 
-
-
-### 
-
-
-### 
-
-
-### 
-
-
-### 
-
-
-### 
-
-
-### 
-
-
-### 
-
-
-### 
-
-
-### 
-
-
-### 
-
-
-### 
-
-
-### 
-
-
-### 
-
-
-### 
-
-
-### 
-
-
-### 
-
-
-###
