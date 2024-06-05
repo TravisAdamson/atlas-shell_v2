@@ -77,6 +77,7 @@ typedef struct comm_dt
 	int op_add;
 	int op_ind;
 	int pipe_fd[2];
+	int pipe2_fd[2];
 	struct c_lst *comms;
 } c_data_t;
 
@@ -200,5 +201,11 @@ int current_length(int *ops);
 void *_calloc(unsigned int nmemb, unsigned int size);
 char *_memcpy(char *dest, char *src, unsigned int n);
 void *_realloc(void *memory, size_t old_size, size_t new_size);
+
+/**
+ * too_many_turtlets.c
+*/
+int make_turtlets_too(char *name, c_lst_t *comm);
+int turtle_does_too(c_lst_t *comm);
 
 #endif
