@@ -107,17 +107,18 @@ int make_turtlets(char *name, c_lst_t *comm)
 		perror(name), exit(EXIT_FAILURE);
 	else if (l == 0)
 	{
-		close(comm_data.pipe_fd[0]);
 		dup2(comm_data.pipe_fd[1], STDOUT_FILENO);
+		close(comm_data.pipe_fd[0]);
 		if (execve(name, comm->comm, environ) == -1)
 			perror(name), exit(EXIT_FAILURE);
-		close(comm_data.pipe_fd[1]);
 	}
 	else
 	{
-		waitpid(l, &s, 0);
-		close(comm_data.pipe_fd[1]); /*  */
 		dup2(comm_data.pipe_fd[0], STDIN_FILENO);
+
+		waitpid(l, &s, 0);
+
+		close(comm_data.pipe_fd[1]);
 		close(comm_data.pipe_fd[0]);
 		f = WEXITSTATUS(s);
 		if (
