@@ -31,28 +31,38 @@ int make_turtlets_too(char *name, c_lst_t *comm)
 	{
 		close(comm_data.pipe_fd[1]);
 		
-		child2 = fork();
+		waitpid(child1, &s, 0);
 
+		child2 = fork();
 		if (child2 == -1)
 			perror(name), exit(EXIT_FAILURE);
 		else if (child2 == 0)
 		{
+			close(comm_data.pipe_fd[1]);
+
 			dup2(comm_data.pipe_fd[0], STDIN_FILENO);
 			close(comm_data.pipe_fd[0]);
 
-			dup2(comm_data.pipe2_fd[1], STDOUT_FILENO);
 			close(comm_data.pipe2_fd[0]);
+
+			dup2(comm_data.pipe2_fd[1], STDOUT_FILENO);
+			close(comm_data.pipe2_fd[1]);
 
 			if (execve(name, comm->next->comm, environ) == -1)
 				perror(name), exit(EXIT_FAILURE);
 		}
 		else
 		{
+			close(comm_data.pipe_fd[0]);
+			close(comm_data.pipe2_fd[1]);
+
 			child3 = fork();
 			if (child3 == -1)
 				perror(name), exit(EXIT_FAILURE);
 			else if (child3 == 0)
 			{
+				close(comm_data.pipe2_fd[1]);
+
 				dup2(comm_data.pipe2_fd[0], STDIN_FILENO);
 				close(comm_data.pipe2_fd[0]);
 				
@@ -63,11 +73,9 @@ int make_turtlets_too(char *name, c_lst_t *comm)
 			{
 				close(comm_data.pipe2_fd[0]);
 
-				waitpid(child1, &s, 0);
 				waitpid(child2, &s2, 0);
 				waitpid(child3, &s3, 0);
 
-				f = WEXITSTATUS(s);
 				f2 = WEXITSTATUS(s2);
 				f3 = WEXITSTATUS(s3);
 
