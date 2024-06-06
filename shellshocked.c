@@ -2,6 +2,7 @@
 
 p_data_t prog;
 c_data_t comm_data;
+int last_exit;
 
 /**
  * main - main function that prompts for input, parses it

@@ -142,7 +142,8 @@ int turtle_is_free(char *code, char **comm)
 		
 	set_turtle_free_or_not();
 
-
+	if (last_exit == 2)
+		exit(2);
 
 	if (s == 2)
 		s = 0;

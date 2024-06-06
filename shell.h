@@ -85,6 +85,7 @@ typedef struct comm_dt
 extern char **environ;
 extern p_data_t prog;
 extern c_data_t comm_data;
+extern int last_exit;
 
 /**
  * turtle_interupt.c
