@@ -49,6 +49,7 @@ typedef struct c_lst
 {
 	char *cmd_name;
 	char *comm[MAX_LEN];
+	char *new_name;
 	int cmd_ind;
 	struct c_lst *next;
 	struct c_lst *prev;
@@ -205,7 +206,7 @@ void *_realloc(void *memory, size_t old_size, size_t new_size);
 /**
  * too_many_turtlets.c
 */
-int make_turtlets_too(char *name, c_lst_t *comm);
+int make_turtlets_too(c_lst_t *comm);
 int turtle_does_too(c_lst_t *comm);
 
 #endif

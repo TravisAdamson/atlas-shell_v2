@@ -2,29 +2,29 @@
 
 /**
  * make_turtlets_too - launches piped command with arguments
- * @name: command name used for error messages
  * @comm: arguments to the command
  * Return: 1 upon success, -1 if input or cmd NULL
  */
 
-int make_turtlets_too(char *name, c_lst_t *comm)
+int make_turtlets_too(c_lst_t *comm)
 {
 	pid_t child1 = 0, child2 = 0, child3 = 0;
-	int f = 0, f2 = 0, f3 = 0;
+	int f2 = 0, f3 = 0;
 	int s = 0, s2 = 0, s3 = 0;
 
-	if (!name || !comm)
+	if (!comm)
 		return (-1);
 	child1 = fork();
 	if (child1 == -1)
-		perror(name), exit(EXIT_FAILURE);
+		perror(comm->cmd_name), exit(EXIT_FAILURE);
 	else if (child1 == 0)
 	{
 		close(comm_data.pipe_fd[0]);
 		dup2(comm_data.pipe_fd[1], STDOUT_FILENO);
 		close(comm_data.pipe_fd[1]);
-		if (execve(name, comm->comm, environ) == -1)
-			perror(name), exit(EXIT_FAILURE);
+		printf("%s: %s\n", comm->new_name, *comm->comm);
+		if (execve(comm->new_name, comm->comm, environ) == -1)
+			perror(comm->new_name), exit(EXIT_FAILURE);
 	}
 	else
 	{
@@ -33,7 +33,7 @@ int make_turtlets_too(char *name, c_lst_t *comm)
 
 		child2 = fork();
 		if (child2 == -1)
-			perror(name), exit(EXIT_FAILURE);
+			perror(comm->new_name), exit(EXIT_FAILURE);
 		else if (child2 == 0)
 		{
 			close(comm_data.pipe_fd[1]);
@@ -42,8 +42,9 @@ int make_turtlets_too(char *name, c_lst_t *comm)
 			close(comm_data.pipe2_fd[0]);
 			dup2(comm_data.pipe2_fd[1], STDOUT_FILENO);
 			close(comm_data.pipe2_fd[1]);
-			if (execve(comm->next->comm[0], comm->next->comm, environ) == -1)
-				perror(name), exit(EXIT_FAILURE);
+			printf("%s: %s\n", comm->next->comm[0], *comm->next->comm);
+			if (execve(comm->next->new_name, comm->next->comm, environ) == -1)
+				perror(comm->new_name), exit(EXIT_FAILURE);
 		}
 		else
 		{
@@ -51,26 +52,30 @@ int make_turtlets_too(char *name, c_lst_t *comm)
 			close(comm_data.pipe2_fd[1]);
 			child3 = fork();
 			if (child3 == -1)
-				perror(name), exit(EXIT_FAILURE);
+				perror(comm->new_name), exit(EXIT_FAILURE);
 			else if (child3 == 0)
 			{
 				close(comm_data.pipe2_fd[1]);
 				dup2(comm_data.pipe2_fd[0], STDIN_FILENO);
 				close(comm_data.pipe2_fd[0]);
-				if (execve(comm->next->next->comm[0],
+				if (execve(comm->next->next->new_name,
 						   comm->next->next->comm, environ) == -1)
-					perror(name), exit(EXIT_FAILURE);
+				{
+					printf("3.%s: %s\n", comm->next->next->new_name,
+						   *comm->next->next->comm);
+					perror(comm->new_name), exit(EXIT_FAILURE);
+				}
 			}
 			else
 			{
 				close(comm_data.pipe2_fd[0]);
 				waitpid(child2, &s2, 0);
 				waitpid(child3, &s3, 0);
-				f = WEXITSTATUS(s);
+
 				f2 = WEXITSTATUS(s2);
 				f3 = WEXITSTATUS(s3);
 				if (
-					(f == 2 || f2 == 2 || f3 == 2) &&
+					(f2 == 2 || f3 == 2) &&
 					!isatty(STDIN_FILENO) &&
 					comm_data.cmd_ind == comm_data.cmd_ct
 				)
@@ -78,7 +83,7 @@ int make_turtlets_too(char *name, c_lst_t *comm)
 			}
 		}
 	}
-	return ((f != 0 || f2 != 0 || f3 != 0) ? -1 : 1);
+	return ((f2 != 0 || f3 != 0) ? -1 : 1);
 }
 
 /**
@@ -90,7 +95,7 @@ int make_turtlets_too(char *name, c_lst_t *comm)
 
 int turtle_does_too(c_lst_t *comm)
 {
-	int i = 0, t = 0, error = 0, fork_err = 0;
+	int i = 0, error = 0;
 	char **f_paths = NULL, *name = comm->comm[0];
 
 	error = find_nest();
@@ -104,11 +109,10 @@ int turtle_does_too(c_lst_t *comm)
 		if (!f_paths)
 			return (127);
 		for (i = 0; f_paths[i]; i++)
+		{
 			if (!access(f_paths[i], X_OK))
-			{
-				fork_err = make_turtlets_too(f_paths[i], comm), t = 1;
-				break;
-			}
+				comm->new_name = _strdup(f_paths[i]);
+		}
 		for (i = 0; f_paths[i]; i++)
 			free(f_paths[i]), f_paths[i] = NULL;
 		free(f_paths);
@@ -116,13 +120,7 @@ int turtle_does_too(c_lst_t *comm)
 	else
 	{
 		if (!access(name, X_OK))
-		{
-			if (error == 1 && name[0] != '/')
-				return (127);
-			fork_err = make_turtlets_too(name, comm), t = 1;
-		}
-		else if (!access(name, F_OK) && access(name, X_OK) == -1)
-			return (13);
+			comm->new_name = _strdup(name);
 	}
-	return (!t ? 127 : fork_err ? fork_err : 0);
+	return (0);
 }
