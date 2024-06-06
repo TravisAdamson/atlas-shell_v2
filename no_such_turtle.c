@@ -60,7 +60,6 @@ static void dont_touch_turtle(char *comm)
 {
 /*	fprintf(stderr, "%s: 1: %s: Permission denied\n", prog, command);*/
 	perror(comm);
-	last_exit = 2;
 }
 
 /**
