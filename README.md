@@ -109,7 +109,7 @@ man shellshocked
 Shellshocked is developed and maintained by Cool Developers:
 matternstsr matthew.ernst@atlasschool.com
 Travis travis.adamson@atlasschool.com
-([GitHub](https://github.com/TravisAdamson/atlas-shell_v2/blob/main/AUTHORS.md)).
+(Our GITHUB Repository](https://github.com/TravisAdamson/atlas-shell_v2/blob/main/AUTHORS.md)).
 
 ## License
 Shellshocked is licensed under the Cool MIT License ([MIT](https://opensource.org/licenses/MIT)).
