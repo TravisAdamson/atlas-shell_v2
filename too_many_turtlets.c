@@ -10,19 +10,18 @@ int make_turtlets_too(c_lst_t *comm)
 {
 	pid_t child1 = 0, child2 = 0, child3 = 0;
 	int f2 = 0, f3 = 0;
-	int s = 0, s2 = 0, s3 = 0;
+	int s = 0, s2 = 0, s3 = 0, i = 0;
 
 	if (!comm)
 		return (-1);
 	child1 = fork();
 	if (child1 == -1)
-		perror(comm->cmd_name), exit(EXIT_FAILURE);
+		perror(comm->new_name), exit(EXIT_FAILURE);
 	else if (child1 == 0)
 	{
 		close(comm_data.pipe_fd[0]);
 		dup2(comm_data.pipe_fd[1], STDOUT_FILENO);
 		close(comm_data.pipe_fd[1]);
-		printf("%s: %s\n", comm->new_name, *comm->comm);
 		if (execve(comm->new_name, comm->comm, environ) == -1)
 			perror(comm->new_name), exit(EXIT_FAILURE);
 	}
@@ -30,7 +29,6 @@ int make_turtlets_too(c_lst_t *comm)
 	{
 		waitpid(child1, &s, 0);
 		close(comm_data.pipe_fd[1]);
-
 		child2 = fork();
 		if (child2 == -1)
 			perror(comm->new_name), exit(EXIT_FAILURE);
@@ -42,7 +40,6 @@ int make_turtlets_too(c_lst_t *comm)
 			close(comm_data.pipe2_fd[0]);
 			dup2(comm_data.pipe2_fd[1], STDOUT_FILENO);
 			close(comm_data.pipe2_fd[1]);
-			printf("%s: %s\n", comm->next->comm[0], *comm->next->comm);
 			if (execve(comm->next->new_name, comm->next->comm, environ) == -1)
 				perror(comm->new_name), exit(EXIT_FAILURE);
 		}
@@ -60,11 +57,7 @@ int make_turtlets_too(c_lst_t *comm)
 				close(comm_data.pipe2_fd[0]);
 				if (execve(comm->next->next->new_name,
 						   comm->next->next->comm, environ) == -1)
-				{
-					printf("3.%s: %s\n", comm->next->next->new_name,
-						   *comm->next->next->comm);
 					perror(comm->new_name), exit(EXIT_FAILURE);
-				}
 			}
 			else
 			{
@@ -83,6 +76,14 @@ int make_turtlets_too(c_lst_t *comm)
 			}
 		}
 	}
+
+	for(i = 0; i < 3; i++)
+	{
+		if(comm->new_name)
+			free(comm->new_name), comm->new_name = NULL;
+		comm = comm->next;
+	}
+
 	return ((f2 != 0 || f3 != 0) ? -1 : 1);
 }
 
@@ -111,7 +112,17 @@ int turtle_does_too(c_lst_t *comm)
 		for (i = 0; f_paths[i]; i++)
 		{
 			if (!access(f_paths[i], X_OK))
-				comm->new_name = _strdup(f_paths[i]);
+			{
+				if (comm->cmd_name)
+					free(comm->cmd_name), comm->cmd_name = _strdup(name);
+				else
+					comm->cmd_name = _strdup(name);
+				if (comm->new_name)
+					free(comm->new_name), comm->new_name = _strdup(f_paths[i]);
+				else
+					comm->new_name = _strdup(f_paths[i]);
+	
+			}
 		}
 		for (i = 0; f_paths[i]; i++)
 			free(f_paths[i]), f_paths[i] = NULL;
@@ -120,7 +131,16 @@ int turtle_does_too(c_lst_t *comm)
 	else
 	{
 		if (!access(name, X_OK))
-			comm->new_name = _strdup(name);
+		{
+			if (comm->cmd_name)
+				free(comm->cmd_name), comm->cmd_name = _strdup(name);
+			else
+				comm->cmd_name = _strdup(name);
+			if (comm->new_name)
+				free(comm->new_name), comm->new_name = _strdup(name);
+			else
+				comm->new_name = _strdup(name);
+		}
 	}
 	return (0);
 }
