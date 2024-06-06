@@ -89,17 +89,11 @@ int turtle_current(c_lst_t *comm, int p_counted)
 	{
 		pipe(comm_data.pipe_fd);
 		pipe(comm_data.pipe2_fd);
-		for (
-			temp = comm;
-			temp;
-			temp = temp->next, p_comp++
-		)
-		{
-			l_error = turtle_does_too(temp);
-			if (l_error)
-				no_such_turtle(temp->comm, l_error);
-		}
-		turtle_nap(temp);
+		l_error = turtle_does_too(comm);
+		
+		if (l_error)
+			no_such_turtle(comm->comm, l_error);
+
 		return (p_comp);
 	}
 	else
