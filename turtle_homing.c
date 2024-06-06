@@ -58,9 +58,14 @@ int turtle_nap(c_lst_t *comm)
 	if (!comm)
 		return (0);
 	l_error = turtle_does(comm);
-	if (l_error == 2 || l_error == 13 || l_error == 127)
+	if (l_error == 13 || l_error == 127)
 	{
 		no_such_turtle(comm->comm, l_error);
+		return (0);
+	}
+	else if (l_error == 2)
+	{
+		no_such_turtle(comm->comm, 0);
 		return (0);
 	}
 	return (1);
@@ -87,7 +92,7 @@ int turtle_current(c_lst_t *comm, int p_counted)
 			temp = temp->next, p_comp++
 	)
 	{
-		turtle_does(temp);
+		l_error = turtle_does(temp);
 		if (l_error)
 			no_such_turtle(temp->comm, l_error);
 	}
