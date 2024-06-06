@@ -25,6 +25,7 @@ int turtle_homing(c_lst_t *comm)
 			{
 				p = current_length(&comm_data.op_array[comm_data.op_ind]);
 				turtle_current(temp, p), l = 0x3;
+				return (0);
 			}
 			else if (comm_data.op_array[comm_data.op_ind] == 0x4)
 			{
@@ -85,19 +86,36 @@ int turtle_current(c_lst_t *comm, int p_counted)
 
 	if (!comm || !comm->next->comm[0] || !p_counted)
 		return (-1);
-	pipe(comm_data.pipe_fd);
-	for (
+	if (p_counted == 2)
+	{
+		pipe(comm_data.pipe_fd);
+		pipe(comm_data.pipe2_fd);
+		l_error = turtle_does_too(comm);
+		
+		if (l_error)
+			no_such_turtle(comm->comm, l_error);
+
+		return (p_comp);
+	}
+	else
+	{
+		pipe(comm_data.pipe_fd);
+		for (
 			temp = comm;
 			temp;
 			temp = temp->next, p_comp++
-	)
-	{
-		l_error = turtle_does(temp);
-		if (l_error)
-			no_such_turtle(temp->comm, l_error);
+		)
+		{
+			l_error = turtle_does(temp);
+			if (l_error)
+				no_such_turtle(temp->comm, l_error);
+		}
+
+		turtle_nap(temp);
+		return (p_comp);
 	}
-	turtle_nap(temp);
-	return (p_comp);
+
+	return (0);
 }
 
 /**
