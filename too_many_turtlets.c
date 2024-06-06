@@ -28,8 +28,9 @@ int make_turtlets_too(char *name, c_lst_t *comm)
 	}
 	else
 	{
-		close(comm_data.pipe_fd[1]);
 		waitpid(child1, &s, 0);
+		close(comm_data.pipe_fd[1]);
+
 		child2 = fork();
 		if (child2 == -1)
 			perror(name), exit(EXIT_FAILURE);
@@ -65,6 +66,7 @@ int make_turtlets_too(char *name, c_lst_t *comm)
 				close(comm_data.pipe2_fd[0]);
 				waitpid(child2, &s2, 0);
 				waitpid(child3, &s3, 0);
+				f = WEXITSTATUS(s);
 				f2 = WEXITSTATUS(s2);
 				f3 = WEXITSTATUS(s3);
 				if (
