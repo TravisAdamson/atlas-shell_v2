@@ -79,6 +79,8 @@ int make_turtlet(char *name, c_lst_t *comm)
 	{
 		waitpid(l, &s, 0);
 		f = WEXITSTATUS(s);
+		if (f == 2)
+			last_exit = 2;
 		if (
 			f == 2 && !isatty(STDIN_FILENO) &&
 			comm_data.cmd_ind == comm_data.cmd_ct
