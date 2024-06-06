@@ -29,24 +29,10 @@ void no_such_turtle(char **comm, int code)
 		)
 			code = 0;
 		if (
-			comm_data.op_ct &&
-			comm_data.op_array[comm_data.op_ind] == 0x3 &&
-			_strcmp(comm_data.comms->cmd_name, "hbtn") == 0
-		)
-			code = 0;
-		if (
 			comm_data.op_array[comm_data.op_ind] == 0x1 &&
 			comm_data.cmd_ind < comm_data.cmd_ct
 		)
 			return;
-
-		if (code == 2 && comm_data.cmd_ct > 1 && comm_data.op_ct < 1)
-		{
-			set_turtle_free_or_not(), exit(code);
-		}
-		if (code == 2)
-			code = 0;
-			
 		set_turtle_free_or_not(), exit(code);
 	}
 }
@@ -71,4 +57,3 @@ static void turtle_not_found(char *comm)
 {
 	fprintf(stderr, "%s: 1: %s: not found\n", prog.prog_name, comm);
 }
-

@@ -58,14 +58,9 @@ int turtle_nap(c_lst_t *comm)
 	if (!comm)
 		return (0);
 	l_error = turtle_does(comm);
-	if (l_error == 13 || l_error == 127)
+	if (l_error == 2 || l_error == 13 || l_error == 127)
 	{
 		no_such_turtle(comm->comm, l_error);
-		return (0);
-	}
-	else if (l_error == 2)
-	{
-		no_such_turtle(comm->comm, 0);
 		return (0);
 	}
 	return (1);
@@ -85,36 +80,19 @@ int turtle_current(c_lst_t *comm, int p_counted)
 
 	if (!comm || !comm->next->comm[0] || !p_counted)
 		return (-1);
-	if (p_counted == 2)
-	{
-		pipe(comm_data.pipe_fd);
-		pipe(comm_data.pipe2_fd);
-		l_error = turtle_does_too(comm);
-		
-		if (l_error)
-			no_such_turtle(comm->comm, l_error);
-
-		return (p_comp);
-	}
-	else
-	{
-		pipe(comm_data.pipe_fd);
-		for (
+	pipe(comm_data.pipe_fd);
+	for (
 			temp = comm;
 			temp;
 			temp = temp->next, p_comp++
-		)
-		{
-			l_error = turtle_does(temp);
-			if (l_error)
-				no_such_turtle(temp->comm, l_error);
-		}
-
-		turtle_nap(temp);
-		return (p_comp);
+	)
+	{
+		turtle_does(temp);
+		if (l_error)
+			no_such_turtle(temp->comm, l_error);
 	}
-
-	return (0);
+	turtle_nap(temp);
+	return (p_comp);
 }
 
 /**

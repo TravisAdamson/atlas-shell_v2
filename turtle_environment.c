@@ -131,21 +131,9 @@ int turtle_is_free(char *code, char **comm)
 		s = _atoi(code);
 	}
 	if (inv || s < 0)
-	{
-		fprintf(stderr, "./hsh: 1: %s: Illegal number: %s\n", comm[0], code);
-		set_turtle_free_or_not();
-		exit(2);
-	}
-
-	if (s == 2 && comm_data.cmd_ct > 1 && comm_data.op_ct < 1)
-		set_turtle_free_or_not(), exit(s);
-		
+		fprintf(stderr, "./hsh: 1: %s: Illegal number: %s\n", comm[0], code),
+		s = 2;
 	set_turtle_free_or_not();
-
-
-
-	if (s == 2)
-		s = 0;
 
 	exit(s);
 	return (0);
