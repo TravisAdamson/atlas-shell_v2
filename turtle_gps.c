@@ -108,5 +108,7 @@ int turn_left(c_lst_t *comm)
 int left_uturn(c_lst_t *comm)
 {
     (void)comm;
+	set_turtle_free_or_not();
+	exit(0);
 	return (0);
 }
